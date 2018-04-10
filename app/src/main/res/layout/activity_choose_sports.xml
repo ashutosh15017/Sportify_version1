@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ishmeetkaur.sportify_version1.ChooseSports"
+    android:background="@color/backgroundDark">
+
+
+    <ImageView
+        android:id="@+id/imageFootball"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="62dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/football" />
+
+    <ImageView
+        android:id="@+id/imageVolleyball"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/imageFootball"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        app:srcCompat="@drawable/vollyball"
+        android:clickable="true"/>
+
+    <ImageView
+        android:id="@+id/imageBasketball"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignEnd="@+id/imageFootball"
+        android:layout_alignRight="@+id/imageFootball"
+        android:layout_below="@+id/imageFootball"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/basketball"
+        android:clickable="true"/>
+
+    <ImageView
+        android:id="@+id/imageCricket"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignLeft="@+id/imageVolleyball"
+        android:layout_alignStart="@+id/imageVolleyball"
+        android:layout_alignTop="@+id/imageBasketball"
+        app:srcCompat="@drawable/cricket"
+        android:clickable="true"/>
+
+    <ImageView
+        android:id="@+id/imageBadminton"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignLeft="@+id/imageBasketball"
+        android:layout_alignStart="@+id/imageBasketball"
+        android:layout_below="@+id/imageBasketball"
+        android:layout_marginTop="50dp"
+        app:srcCompat="@drawable/badminton_player"
+        android:clickable="true"/>
+
+    <ImageView
+        android:id="@+id/imageTT"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignLeft="@+id/imageCricket"
+        android:layout_alignStart="@+id/imageCricket"
+        android:layout_alignTop="@+id/imageBadminton"
+        app:srcCompat="@drawable/pin_pong"
+        android:clickable="true"/>
+
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageFootball"
+        android:layout_alignStart="@+id/imageFootball"
+        android:layout_below="@+id/imageFootball"
+        android:layout_marginLeft="34dp"
+        android:layout_marginStart="34dp"
+        android:text="football"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignEnd="@+id/imageVolleyball"
+        android:layout_alignRight="@+id/imageVolleyball"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:text="volleyball"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_below="@+id/imageBasketball"
+        android:layout_marginTop="11dp"
+        android:text="basketball"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignTop="@+id/textView3"
+        android:text="cricket"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView3"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_below="@+id/imageBadminton"
+        android:layout_marginTop="15dp"
+        android:text="badminton"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView5"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:text="table tennis"
+        android:textColor="@android:color/white" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabOK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/imageTT"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="35dp"
+        android:layout_marginEnd="15dp"
+        android:clickable="true"
+        android:backgroundTint="@color/buttonAccent"
+        app:srcCompat="@drawable/fab" />
+
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageVolleyball"
+        android:layout_marginBottom="8dp"
+        android:layout_toEndOf="@+id/textView"
+        android:text="Choose Sports"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>
