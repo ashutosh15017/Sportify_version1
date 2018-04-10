@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera2"
+            android:icon="@drawable/home"
+            android:textAllCaps = "true"
+            android:title="HOME2" />
+        <item
+            android:id="@+id/nav_gallery2"
+            android:icon="@drawable/team_details_logo_white"
+            android:textAllCaps = "true"
+            android:title="MY TEAM2" />
+        <item
+            android:id="@+id/nav_slideshow2"
+            android:icon="@drawable/alarm_final"
+            android:textAllCaps = "true"
+            android:title="REMINDERS2" />
+        <item
+            android:id="@+id/nav_manage2"
+            android:icon="@drawable/profile"
+            android:textAllCaps = "true"
+            android:title="PROFILE2" />
+    </group>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_logout2"
+                android:icon="@drawable/logout"
+                android:textAllCaps = "true"
+                android:title="LOG OUT2" />
+
+        </menu>
+    </item>
+
+</menu>

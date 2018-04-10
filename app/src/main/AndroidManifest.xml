@@ -31,6 +31,8 @@
         <activity
             android:name=".AddPost"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Home_Coordinator"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
