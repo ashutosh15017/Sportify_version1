@@ -176,7 +176,6 @@ public class Fragment_feeds extends Fragment {
                                 for (DataSnapshot snapshot : dataSnapshot.getChildren())
                                 {
                                     String email = snapshot.getValue(String.class);
-                                    User user = snapshot.getValue(User.class);
                                     registerdEmails.add(email.trim());
 
                                 }

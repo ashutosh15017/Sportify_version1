@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -80,14 +79,14 @@ public class Fragment_mysports extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         getFirebaseData();
 
-        Button button22 = (Button) rootView.findViewById(R.id.delete);
+       /* Button button22 = (Button) rootView.findViewById(R.id.delete);
         button22.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(),Attendance.class);
                 startActivity(i);
             }
-        });
+        });*/
 
         return rootView;
     }

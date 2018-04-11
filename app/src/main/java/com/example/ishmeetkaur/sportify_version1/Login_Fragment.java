@@ -44,9 +44,10 @@ public class Login_Fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Coord coord = new Coord("Abhishek Chauhan","abhishek15005@iiitd.ac.in","08284844744","volleyball","male");
-        coordList.add(coord);
-
+        Coord coord1 = new Coord("Abhishek Chauhan","abhishek15005@iiitd.ac.in","08284844744","volleyball","male");
+        Coord coord2 = new Coord("Deepanshu Dabas","deepanshu15023@iiitd.ac.in","09210242008","football","male");
+        coordList.add(coord1);
+        coordList.add(coord2);
     }
 
     @Override
@@ -86,14 +87,12 @@ public class Login_Fragment extends Fragment {
                         if (firebaseAuth.getCurrentUser().getEmail().equals(coord.getCoordemail()))
                         {
                             isCord = true;
-                            mCord = coord;
                         }
                     }
 
                     if (isCord)
                     {
                         Intent intent = new Intent(getActivity(),Home_Coordinator.class);
-                        intent.putExtra("Coordinator",mCord);
                         startActivity(intent);
                     }
                     else

@@ -3,6 +3,7 @@ package com.example.ishmeetkaur.sportify_version1;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
@@ -40,6 +41,7 @@ public class C_feeds_fragment extends Fragment {
     DatabaseReference databaseReference;
     recyler_adapter_feed_coord adapter;
     FirebaseAuth mAuth;
+    FloatingActionButton fabAddPost;
 
     public C_feeds_fragment() {
         // Required empty public constructor
@@ -61,6 +63,15 @@ public class C_feeds_fragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.fragment_c_feeds_fragment, container, false);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.feed_recycler_view_coord);
+        fabAddPost = (FloatingActionButton) rootView.findViewById(R.id.fabAddPost);
+        fabAddPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // add post
+                Intent intent = new Intent(getActivity(),AddPost.class);
+                startActivity(intent);
+            }
+        });
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

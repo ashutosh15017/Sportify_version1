@@ -21,6 +21,9 @@ public class Coord implements Serializable{
         CoordGender = coordGender;
     }
 
+    public Coord() {
+    }
+
     public String getCoordname() {
         return Coordname;
     }

@@ -32,6 +32,7 @@ public class Home_Coordinator extends AppCompatActivity implements NavigationVie
 
         mAuth = FirebaseAuth.getInstance();
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar2, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

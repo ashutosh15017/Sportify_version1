@@ -15,8 +15,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddPost extends AppCompatActivity {
 
@@ -28,15 +31,14 @@ public class AddPost extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     private FloatingActionButton fabLogout;
+    private Coord mCoord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
-        Intent i = getIntent();
-        Coord coord = (Coord) i.getSerializableExtra("Coordinator");
-        sport = coord.getCoordSport();
-        byWhom = coord.getCoordemail();
+        getCoord();
+
 
         postText = (EditText) findViewById(R.id.postText);
         postButton = (Button) findViewById(R.id.postButton);
@@ -106,5 +108,34 @@ public class AddPost extends AppCompatActivity {
         Post post = new Post(sport,type,byWhom,postString,isRegistration);
         databaseReference.child("feed").child(key).setValue(post);
         Toast.makeText(getApplicationContext(), "Posted", Toast.LENGTH_SHORT).show();
+    }
+
+    public void getCoord()
+    {
+
+        FirebaseDatabase.getInstance().getReference().child("coordinator").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    Coord coord = snapshot.getValue(Coord.class);
+                    if (coord.getCoordemail().equals(mAuth.getCurrentUser().getEmail()))
+                    {
+                        mCoord =  coord;
+                    }
+                }
+                sport = mCoord.getCoordSport();
+                byWhom = mCoord.getCoordemail();
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+
+        });
     }
 }

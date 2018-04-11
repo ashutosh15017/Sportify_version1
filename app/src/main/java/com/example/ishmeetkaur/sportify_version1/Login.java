@@ -10,15 +10,35 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Login extends AppCompatActivity {
 
     private final int WRITE_EXTERNAL_STORAGE_CODE=1;
     private final int READ_EXTERNAL_STORAGE_CODE=2;
+    private final List<Coord> coordList = new ArrayList<>();
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        Coord coord1 = new Coord("Abhishek Chauhan","abhishek15005@iiitd.ac.in","08284844744","volleyball","male");
+        Coord coord2 = new Coord("Deepanshu Dabas","deepanshu15023@iiitd.ac.in","09210242008","football","male");
+        coordList.add(coord1);
+        coordList.add(coord2);
+
+        for (Coord coord : coordList)
+        {
+            databaseReference.child("coordinator").child(coord.getCoordname()).setValue(coord);
+        }
+
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         askPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE_CODE);
