@@ -3,6 +3,7 @@ package com.example.ishmeetkaur.sportify_version1;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -22,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
@@ -54,6 +57,8 @@ public class C_feeds_fragment extends Fragment {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
 
     }
 
@@ -87,6 +92,7 @@ public class C_feeds_fragment extends Fragment {
 
     void getFirebaseData()
     {
+
         databaseReference = firebaseDatabase.getReference("feed");
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -105,7 +111,9 @@ public class C_feeds_fragment extends Fragment {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+                Post post = dataSnapshot.getValue(Post.class);
+                postList.remove(post);
+                mRecyclerView.setAdapter(adapter);
             }
 
             @Override
@@ -126,6 +134,7 @@ public class C_feeds_fragment extends Fragment {
         ArrayList<Post> postList;
         List<String> registerdEmails = new ArrayList<>();
         List<User> registeredUsers = new ArrayList<>();
+        ArrayList<String> reminderEmails = new ArrayList<>();
 
         public recyler_adapter_feed_coord(ArrayList<Post> postList) {
             this.postList = postList;
@@ -140,10 +149,26 @@ public class C_feeds_fragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(C_feeds_fragment.recyler_adapter_feed_coord.MyViewHolder holder, final int position) {
+        public void onBindViewHolder(final C_feeds_fragment.recyler_adapter_feed_coord.MyViewHolder holder, final int position) {
 
 
             holder.postText.setText(postList.get(position).getInfo());
+            holder.removePost.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // remove post
+                    removePost(position);
+                }
+            });
+
+            holder.send_reminder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    sendReminder(position);
+                }
+            });
+
+
             if (postList.get(position).getIsRegistrationAllowed().equals("yes"))
             {
                 // check the registrations from firebase, grab user info and make a sheet
@@ -164,6 +189,52 @@ public class C_feeds_fragment extends Fragment {
             }
 
 
+        }
+
+        public void sendReminder (final int position)
+        {
+            // send reminder to everyone subscribed to the sport
+
+            final String sport = postList.get(position).getSport();
+            reminderEmails.clear();
+            FirebaseDatabase.getInstance().getReference().child("student").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren())
+                    {
+                        User user = snapshot.child("information").getValue(User.class);
+                        GenericTypeIndicator<ArrayList<String>> t = new GenericTypeIndicator<ArrayList<String>>() {};
+                        ArrayList<String> sportList = snapshot.child("sports").getValue(t);
+                        if (sportList.contains(sport))
+                            reminderEmails.add(user.getUserEmail());
+                    }
+
+
+                    Intent email = new Intent(Intent.ACTION_SEND_MULTIPLE);
+                    email.putExtra(Intent.EXTRA_SUBJECT,"Reminder");
+                    email.setType("text/plain");
+                    email.putExtra(Intent.EXTRA_TEXT, "Reminder for: \n" + postList.get(position).getInfo());
+                    String [] emailList = reminderEmails.toArray(new String[0]);
+                    email.putExtra(Intent.EXTRA_EMAIL, emailList);
+                    startActivity(Intent.createChooser(email, "Send email..."));
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+
+
+            });
+
+        }
+
+        public void removePost(int position)
+        {
+            databaseReference = firebaseDatabase.getReference("feed").child(postList.get(position).getPostKey());
+            databaseReference.removeValue();
+            postList.remove(position);
+            Toast.makeText(getContext(), "Removed post", Toast.LENGTH_SHORT).show();
         }
 
         public void grabRegistrations(int position)
@@ -278,11 +349,15 @@ public class C_feeds_fragment extends Fragment {
         {
             TextView postText;
             Button registrations;
+            Button removePost;
+            Button send_reminder;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
                 postText  = (TextView) itemView.findViewById(R.id.post_text);
                 registrations = (Button) itemView.findViewById(R.id.registrations);
+                removePost = (Button) itemView.findViewById(R.id.removePost);
+                send_reminder = (Button) itemView.findViewById(R.id.send_reminder);
             }
         }
     }

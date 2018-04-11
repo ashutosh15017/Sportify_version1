@@ -124,7 +124,9 @@ public class Fragment_feeds extends Fragment {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+                Post post = dataSnapshot.getValue(Post.class);
+                postList.remove(post);
+                mRecyclerView.setAdapter(adapter);
             }
 
             @Override

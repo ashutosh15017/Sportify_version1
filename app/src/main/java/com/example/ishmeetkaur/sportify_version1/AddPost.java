@@ -108,6 +108,8 @@ public class AddPost extends AppCompatActivity {
         Post post = new Post(sport,type,byWhom,postString,isRegistration);
         databaseReference.child("feed").child(key).setValue(post);
         Toast.makeText(getApplicationContext(), "Posted", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(),Home_Coordinator.class);
+        startActivity(intent);
     }
 
     public void getCoord()

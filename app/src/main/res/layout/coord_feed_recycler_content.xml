@@ -33,6 +33,17 @@
                 android:textSize="20sp" />
 
             <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/removePost"
+                android:background="@android:color/transparent"
+                android:text="X"
+                android:padding="10dp"
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentRight="true"/>
+
+            <Button
                 android:id="@+id/send_reminder"
                 android:text="SEND REMINDER"
                 android:textColor="@android:color/white"
