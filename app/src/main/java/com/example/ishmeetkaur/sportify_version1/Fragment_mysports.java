@@ -80,7 +80,14 @@ public class Fragment_mysports extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         getFirebaseData();
 
-        
+        Button button22 = (Button) rootView.findViewById(R.id.delete);
+        button22.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),Attendance.class);
+                startActivity(i);
+            }
+        });
 
         return rootView;
     }
