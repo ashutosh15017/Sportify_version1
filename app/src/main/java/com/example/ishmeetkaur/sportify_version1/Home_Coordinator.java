@@ -95,7 +95,7 @@ public class Home_Coordinator extends AppCompatActivity implements NavigationVie
         }
         else if(id == R.id.action_settings4)
         {
-            logOut();
+            //logOut();
         }
 
         return super.onOptionsItemSelected(item);

@@ -18,6 +18,9 @@ public class User {
         this.userGender = userGender;
     }
 
+    public User() {
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -48,5 +51,10 @@ public class User {
 
     public void setUserGender(String userGender) {
         this.userGender = userGender;
+    }
+
+    @Override
+    public String toString() {
+        return userName + "," + userEmail + "," + userNumber + "," + userGender;
     }
 }

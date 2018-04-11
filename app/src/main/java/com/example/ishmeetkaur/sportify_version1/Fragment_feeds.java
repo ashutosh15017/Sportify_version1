@@ -6,7 +6,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -177,12 +176,15 @@ public class Fragment_feeds extends Fragment {
                                 for (DataSnapshot snapshot : dataSnapshot.getChildren())
                                 {
                                     String email = snapshot.getValue(String.class);
+                                    User user = snapshot.getValue(User.class);
                                     registerdEmails.add(email.trim());
-                                    Log.d("EMAILTAG", "onClick00: " + registerdEmails.toString());
+
                                 }
-                                Log.d("EMAILTAG", "onClick: " + registerdEmails.toString());
                                 if (!registerdEmails.contains(mAuth.getCurrentUser().getEmail().trim()))
+                                {
                                     databaseReference.child(postList.get(position).getPostKey()).child("registrations").push().setValue(mAuth.getCurrentUser().getEmail());
+                                    Toast.makeText(getContext(), "Registered", Toast.LENGTH_SHORT).show();
+                                }
                                 else
                                     Toast.makeText(getContext(), "Already Registered", Toast.LENGTH_SHORT).show();
                             }

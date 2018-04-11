@@ -86,7 +86,7 @@ public class Home extends AppCompatActivity
         }
         else if(id == R.id.action_settings2)
         {
-            logOut();
+            //logOut();
         }
 
         return super.onOptionsItemSelected(item);

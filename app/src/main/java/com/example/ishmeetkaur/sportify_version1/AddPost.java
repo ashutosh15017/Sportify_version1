@@ -36,7 +36,7 @@ public class AddPost extends AppCompatActivity {
         Intent i = getIntent();
         Coord coord = (Coord) i.getSerializableExtra("Coordinator");
         sport = coord.getCoordSport();
-        byWhom = coord.getCoordname();
+        byWhom = coord.getCoordemail();
 
         postText = (EditText) findViewById(R.id.postText);
         postButton = (Button) findViewById(R.id.postButton);

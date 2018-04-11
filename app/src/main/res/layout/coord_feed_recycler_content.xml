@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/backgroundDark"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
     <android.support.v7.widget.CardView
@@ -17,8 +16,6 @@
         android:padding="5dp"
         card_view:cardBackgroundColor="@color/cardAccent"
         >
-
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -36,8 +33,20 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/oneclick"
-                android:text="REGISTER"
+                android:id="@+id/send_reminder"
+                android:text="SEND REMINDER"
+                android:textColor="@android:color/white"
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:textStyle="bold"
+                android:padding="10dp"
+                />
+
+            <Button
+                android:id="@+id/registrations"
+                android:text="REGISTERATIONS"
                 android:textColor="@android:color/white"
                 android:background="@android:color/transparent"
                 android:layout_width="wrap_content"

@@ -92,7 +92,7 @@ public class Login_Fragment extends Fragment {
 
                     if (isCord)
                     {
-                        Intent intent = new Intent(getActivity(),AddPost.class);
+                        Intent intent = new Intent(getActivity(),Home_Coordinator.class);
                         intent.putExtra("Coordinator",mCord);
                         startActivity(intent);
                     }
@@ -158,7 +158,7 @@ public class Login_Fragment extends Fragment {
                         if (isCord)
                         {
                             Log.d("CORDTAG","YES");
-                            Intent i = new Intent(getActivity(),AddPost.class);
+                            Intent i = new Intent(getActivity(),Home_Coordinator.class);
                             i.putExtra("Coordinator",mCord);
                             startActivity(i);
                         }
