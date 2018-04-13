@@ -43,7 +43,6 @@ public class TeamDetailsActivity extends AppCompatActivity {
     ArrayList<Student> students;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +62,7 @@ public class TeamDetailsActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
         teamStudents = new ArrayList<>();
         adapter = new TeamDetailsActivity.recyler_adapter_teamDetails(teamStudents);
@@ -73,23 +72,23 @@ public class TeamDetailsActivity extends AppCompatActivity {
         getFirebaseData();
 
     }
-    void getFirebaseData()
-    {
+
+    void getFirebaseData() {
         //get all students info
         databaseReference = firebaseDatabase.getReference("student");
         databaseReference.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                for(DataSnapshot uniqueKeySnapshot : snapshot.getChildren()){
+                for (DataSnapshot uniqueKeySnapshot : snapshot.getChildren()) {
                     Student s = new Student();
-                    for(DataSnapshot teamSnapshot : uniqueKeySnapshot.child("information").getChildren()){
+                    for (DataSnapshot teamSnapshot : uniqueKeySnapshot.child("information").getChildren()) {
                         String key = (String) teamSnapshot.getKey();
-                        String value= (String) teamSnapshot.getValue();
-                        if(key.equals("userName")) s.setname(value);
-                        if(key.equals("userEmail")) s.setemail(value);
-                        if(key.equals("userGender")) s.setgender(value);
-                        if(key.equals("userNumber")) s.setphoneno(value);
+                        String value = (String) teamSnapshot.getValue();
+                        if (key.equals("userName")) s.setname(value);
+                        if (key.equals("userEmail")) s.setemail(value);
+                        if (key.equals("userGender")) s.setgender(value);
+                        if (key.equals("userNumber")) s.setphoneno(value);
 
                     }
                     students.add(s);
@@ -98,7 +97,7 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.v("The read failed: " ,databaseError.getMessage());
+                Log.v("The read failed: ", databaseError.getMessage());
             }
         });
 
@@ -109,30 +108,30 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                int index=0;
-                for(DataSnapshot uniqueKeySnapshot : snapshot.getChildren()){
-                    ArrayList<String > teams = new ArrayList<>();
-                    for(DataSnapshot teamSnapshot : uniqueKeySnapshot.child("team").getChildren()){
+                int index = 0;
+                for (DataSnapshot uniqueKeySnapshot : snapshot.getChildren()) {
+                    ArrayList<String> teams = new ArrayList<>();
+                    for (DataSnapshot teamSnapshot : uniqueKeySnapshot.child("team").getChildren()) {
                         String team = (String) teamSnapshot.getValue();
                         teams.add(team);
-                        Log.v("TAG",team);
+                        Log.v("TAG", team);
                         mRecyclerView.setAdapter(adapter);
                     }
                     students.get(index).setteam(teams);
-                    index ++;
+                    index++;
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.v("The read failed: " ,databaseError.getMessage());
+                Log.v("The read failed: ", databaseError.getMessage());
             }
 
 
         });
 
         //find the sport of coordinator
-        
+
 
         //fill the validStudents Array
 
@@ -140,8 +139,7 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
     }
 
-    public class recyler_adapter_teamDetails extends RecyclerView.Adapter<TeamDetailsActivity.recyler_adapter_teamDetails.MyViewHolder>
-    {
+    public class recyler_adapter_teamDetails extends RecyclerView.Adapter<TeamDetailsActivity.recyler_adapter_teamDetails.MyViewHolder> {
         ArrayList<Student> students;
 
         public recyler_adapter_teamDetails(ArrayList<Student> students) {
@@ -149,10 +147,9 @@ public class TeamDetailsActivity extends AppCompatActivity {
         }
 
 
-
         @Override
         public TeamDetailsActivity.recyler_adapter_teamDetails.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.team_details_recycler_content,parent,false);
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.team_details_recycler_content, parent, false);
             return new TeamDetailsActivity.recyler_adapter_teamDetails.MyViewHolder(view);
         }
 
@@ -168,18 +165,18 @@ public class TeamDetailsActivity extends AppCompatActivity {
             return students.size();
         }
 
-        public class MyViewHolder extends RecyclerView.ViewHolder
-        {
+        public class MyViewHolder extends RecyclerView.ViewHolder {
             TextView memberName;
             TextView memberPhone;
             TextView memberEmail;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
-                memberName  = (TextView) itemView.findViewById(R.id.member_name);
-                memberPhone  = (TextView) itemView.findViewById(R.id.member_phone);
-                memberEmail  = (TextView) itemView.findViewById(R.id.member_email);
+                memberName = (TextView) itemView.findViewById(R.id.member_name);
+                memberPhone = (TextView) itemView.findViewById(R.id.member_phone);
+                memberEmail = (TextView) itemView.findViewById(R.id.member_email);
             }
         }
 
+    }
 }
