@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/backgroundDark"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:app="schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@color/cardAccent"
+
+
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+                android:id="@+id/email"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+
+                android:layout_alignBottom="@+id/member_email"
+                android:layout_alignStart="@+id/phone" />
+
+            <ImageView
+                android:id="@+id/phone"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+
+                android:layout_above="@+id/member_email"
+                android:layout_alignStart="@+id/name" />
+
+
+            <ImageView
+                android:id="@+id/name"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+
+                />
+
+            <TextView
+                android:id="@+id/member_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/name"
+                android:layout_alignEnd="@+id/member_email"
+                android:layout_gravity="center_vertical"
+                android:text="Member name"
+                android:textColor="@android:color/white"
+                android:textSize="22dp" />
+
+            <TextView
+                android:id="@+id/member_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/member_email"
+                android:layout_below="@+id/member_name"
+                android:layout_gravity="center_vertical"
+                android:text="Member Phone"
+                android:textColor="@android:color/white"
+                android:textSize="22dp" />
+
+            <TextView
+                android:id="@+id/member_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/member_phone"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="28dp"
+                android:layout_toEndOf="@+id/email"
+                android:text="Member Email"
+                android:textColor="@android:color/white"
+                android:textSize="22dp" />
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

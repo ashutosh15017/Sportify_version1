@@ -4,10 +4,28 @@
     android:layout_height="match_parent"
     tools:context="com.example.ishmeetkaur.sportify_version1.C_myTeam_fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
 
+        <Button
+            android:id="@+id/buttonTeamDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="team details" />
+
+        <Button
+            android:id="@+id/buttonAttendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="attendance" />
+
+        <Button
+            android:id="@+id/buttonSuggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="suggestions" />
+    </LinearLayout>
 </FrameLayout>
