@@ -41,6 +41,9 @@ public class TeamDetailsActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     private FloatingActionButton fabAdd;
     ArrayList<Student> students;
+    private FirebaseAuth mAuth;
+    private Coord mCoord;
+    private String Coordsport;
 
 
     @Override
@@ -130,14 +133,35 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
         });
 
-        //find the sport of coordinator
 
+        //find the sport of coordinator
+        FirebaseDatabase.getInstance().getReference().child("coordinator").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Coord coord = snapshot.getValue(Coord.class);
+                    if (coord.getCoordemail().equals(mAuth.getCurrentUser().getEmail())) {
+                        mCoord = coord;
+                    }
+                }
+                Coordsport = mCoord.getCoordSport();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+
+        });
 
         //fill the validStudents Array
+
 
         //again setting teh adapter
 
     }
+
 
     public class recyler_adapter_teamDetails extends RecyclerView.Adapter<TeamDetailsActivity.recyler_adapter_teamDetails.MyViewHolder> {
         ArrayList<Student> students;
@@ -177,6 +201,5 @@ public class TeamDetailsActivity extends AppCompatActivity {
                 memberEmail = (TextView) itemView.findViewById(R.id.member_email);
             }
         }
-
     }
 }
