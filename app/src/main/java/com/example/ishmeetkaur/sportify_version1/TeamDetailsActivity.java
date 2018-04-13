@@ -67,6 +67,7 @@ public class TeamDetailsActivity extends AppCompatActivity {
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
+        students= new ArrayList<>();
         teamStudents = new ArrayList<>();
         adapter = new TeamDetailsActivity.recyler_adapter_teamDetails(teamStudents);
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -74,67 +75,14 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
         getFirebaseData();
 
+
+
     }
 
     void getFirebaseData() {
-        //get all students info
-        databaseReference = firebaseDatabase.getReference("student");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                for (DataSnapshot uniqueKeySnapshot : snapshot.getChildren()) {
-                    Student s = new Student();
-                    for (DataSnapshot teamSnapshot : uniqueKeySnapshot.child("information").getChildren()) {
-                        String key = (String) teamSnapshot.getKey();
-                        String value = (String) teamSnapshot.getValue();
-                        if (key.equals("userName")) s.setname(value);
-                        if (key.equals("userEmail")) s.setemail(value);
-                        if (key.equals("userGender")) s.setgender(value);
-                        if (key.equals("userNumber")) s.setphoneno(value);
-
-                    }
-                    students.add(s);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.v("The read failed: ", databaseError.getMessage());
-            }
-        });
-
-
-        //get All Students teams
-        databaseReference = firebaseDatabase.getReference("student");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                int index = 0;
-                for (DataSnapshot uniqueKeySnapshot : snapshot.getChildren()) {
-                    ArrayList<String> teams = new ArrayList<>();
-                    for (DataSnapshot teamSnapshot : uniqueKeySnapshot.child("team").getChildren()) {
-                        String team = (String) teamSnapshot.getValue();
-                        teams.add(team);
-                        Log.v("TAG", team);
-                        mRecyclerView.setAdapter(adapter);
-                    }
-                    students.get(index).setteam(teams);
-                    index++;
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.v("The read failed: ", databaseError.getMessage());
-            }
-
-
-        });
-
 
         //find the sport of coordinator
+        mAuth = FirebaseAuth.getInstance();
         FirebaseDatabase.getInstance().getReference().child("coordinator").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -155,10 +103,78 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
         });
 
-        //fill the validStudents Array
 
 
-        //again setting teh adapter
+        //get all students info
+        databaseReference = firebaseDatabase.getReference("student");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot uniqueKeySnapshot : snapshot.getChildren()) {
+                    Student s = new Student("","","","",new ArrayList<String> ());
+                    for (DataSnapshot teamSnapshot : uniqueKeySnapshot.child("information").getChildren()) {
+                        String key = (String) teamSnapshot.getKey();
+                        String value = (String) teamSnapshot.getValue();
+                        if (key.equals("userName")) s.setname(value);
+                        if (key.equals("userEmail")) s.setemail(value);
+                        if (key.equals("userGender")) s.setgender(value);
+                        if (key.equals("userNumber")) s.setphoneno(value);
+
+                    }
+                    students.add(s);
+                    //Log.v("students", String.valueOf(students.size()));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.v("The read failed: ", databaseError.getMessage());
+            }
+        });
+
+
+
+        //get All Students teams
+        databaseReference = firebaseDatabase.getReference("student");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                int index = 0;
+                for (DataSnapshot uniqueKeySnapshot : snapshot.getChildren()) {
+                    ArrayList<String> teams = new ArrayList<>();
+                    for (DataSnapshot teamSnapshot : uniqueKeySnapshot.child("team").getChildren()) {
+                        String team = (String) teamSnapshot.getValue();
+                        teams.add(team);
+                        Log.v("TAG", team);
+                        mRecyclerView.setAdapter(adapter);
+                    }
+                    students.get(index).setteam(teams);
+                    index++;
+                }
+
+                //fill the teamStudents Array
+                for(int i =0 ; i< students.size();i++) {
+                    if (students.get(i).getteams().contains(Coordsport))
+                    {
+                        teamStudents.add(students.get(i));
+                        //again setting teh adapter
+                        mRecyclerView.setAdapter(adapter);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.v("The read failed: ", databaseError.getMessage());
+            }
+
+
+        });
+
+
+
 
     }
 

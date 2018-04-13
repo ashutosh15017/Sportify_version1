@@ -21,30 +21,29 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/email"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
 
-                android:layout_alignBottom="@+id/member_email"
-                android:layout_alignStart="@+id/phone" />
+                android:layout_alignStart="@+id/phone"
+                android:layout_alignTop="@+id/member_email" />
 
             <ImageView
                 android:id="@+id/phone"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
 
-                android:layout_above="@+id/member_email"
-                android:layout_alignStart="@+id/name" />
+                android:layout_alignStart="@+id/name"
+                android:layout_centerVertical="true" />
 
 
             <ImageView
                 android:id="@+id/name"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="5dp"
 
@@ -54,35 +53,37 @@
                 android:id="@+id/member_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:layout_alignBottom="@+id/name"
-                android:layout_alignEnd="@+id/member_email"
+                android:layout_alignStart="@+id/member_phone"
                 android:layout_gravity="center_vertical"
                 android:text="Member name"
                 android:textColor="@android:color/white"
-                android:textSize="22dp" />
+                android:textSize="30dp" />
 
             <TextView
                 android:id="@+id/member_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/member_email"
-                android:layout_below="@+id/member_name"
+                android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
                 android:text="Member Phone"
                 android:textColor="@android:color/white"
-                android:textSize="22dp" />
+                android:textSize="30dp" />
 
             <TextView
                 android:id="@+id/member_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/member_phone"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/phone"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="28dp"
-                android:layout_toEndOf="@+id/email"
+                android:layout_marginEnd="35dp"
+                android:layout_marginTop="60dp"
                 android:text="Member Email"
                 android:textColor="@android:color/white"
-                android:textSize="22dp" />
+                android:textSize="30dp" />
 
         </RelativeLayout>
 

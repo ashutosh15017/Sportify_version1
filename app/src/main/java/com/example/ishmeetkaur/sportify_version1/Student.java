@@ -68,6 +68,10 @@ public class Student {
     {
         this.team = team;
     }
+    public ArrayList<String> getteams()
+    {
+        return this.team;
+    }
 
     @Override
     public String toString() {
