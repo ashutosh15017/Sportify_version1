@@ -44,8 +44,10 @@
         <activity
             android:name=".TeamDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Attendance_Clicked"
-            android:theme="@style/AppTheme.NoActionBar" ></activity>
+        <activity
+            android:name=".Attendance_Clicked"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Suggestion_Coordinator"></activity>
     </application>
 
 </manifest>
