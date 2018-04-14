@@ -57,7 +57,8 @@ public class TeamDetailsActivity extends AppCompatActivity {
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent(getApplicationContext(), AddTeamMemberActivity.class);
+                startActivity(i);
             }
         });
 
