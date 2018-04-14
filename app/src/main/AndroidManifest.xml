@@ -45,10 +45,10 @@
             android:name=".TeamDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddTeamMemberActivity"
+            android:name=".Attendance_Clicked"
             android:theme="@style/AppTheme.NoActionBar" />
-
-
+        <activity android:name=".Suggestion_Coordinator"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
