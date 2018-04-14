@@ -57,11 +57,11 @@ public class AddTeamMemberActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        mRecyclerView = (RecyclerView) findViewById(R.id.add_team_member_recycler_view);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
 
         students= new ArrayList<>();
         validStudents = new ArrayList<>();
