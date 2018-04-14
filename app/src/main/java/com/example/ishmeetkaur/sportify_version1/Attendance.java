@@ -1,6 +1,7 @@
 package com.example.ishmeetkaur.sportify_version1;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,8 +33,6 @@ public class Attendance extends AppCompatActivity
 {
 
 
-    private ProgressDialog working_dialog;
-
     private FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
 
@@ -59,6 +58,7 @@ public class Attendance extends AppCompatActivity
         // finding today's date
         Calendar calendar = Calendar.getInstance();
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+
 
         count = dayOfWeek - 1;
         if(count == 0 || count == 6)
@@ -220,7 +220,7 @@ public class Attendance extends AppCompatActivity
         }
 
 
-        public class ViewHolder1 extends RecyclerView.ViewHolder
+        public class ViewHolder1 extends RecyclerView.ViewHolder implements View.OnClickListener
         {
             TextView p;
             TextView a;
@@ -230,9 +230,20 @@ public class Attendance extends AppCompatActivity
             public ViewHolder1(View itemView)
             {
                 super(itemView);
+                itemView.setOnClickListener(this);
                 p  = (TextView) itemView.findViewById(R.id.present);
                 a = (TextView) itemView.findViewById(R.id.absent);
                 m = (TextView) itemView.findViewById(R.id.medical);
+            }
+
+            @Override
+            public void onClick(View view)
+            {
+                Log.v("onClick " , String.valueOf(getLayoutPosition()));
+                Intent i11 = new Intent(Attendance.this,Attendance_Clicked.class);
+                int sendThis = getLayoutPosition() +1;
+                i11.putExtra("intVariableName", sendThis);
+                startActivity(i11);
             }
         }
     }
