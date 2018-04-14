@@ -80,7 +80,17 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+//        students.clear();
+//        teamStudents.clear();
+  //      getFirebaseData();
+
+    }
+
     void getFirebaseData() {
+
 
         //find the sport of coordinator
         mAuth = FirebaseAuth.getInstance();
@@ -112,6 +122,8 @@ public class TeamDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+                students.clear();
+                teamStudents.clear();
                 for (DataSnapshot uniqueKeySnapshot : snapshot.getChildren()) {
                     Student s = new Student("","","","",new ArrayList<String> ());
                     for (DataSnapshot teamSnapshot : uniqueKeySnapshot.child("information").getChildren()) {

@@ -33,11 +33,10 @@ public class AddTeamMemberActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter mFirebaseAdapter;
     RecyclerView mRecyclerView;
     AddTeamMemberActivity.recycler_adapter_add_member adapter;
-    ArrayList<Student> validStudents;
+    static ArrayList<Student> validStudents;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    private FloatingActionButton fabDone;
-    ArrayList<Student> students;
+    static ArrayList<Student> students;
     private FirebaseAuth mAuth;
     private Coord mCoord;
     private String Coordsport;
@@ -48,15 +47,7 @@ public class AddTeamMemberActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_team_member);
-        fabDone = (FloatingActionButton) findViewById(R.id.fabDone);
 
-        fabDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), TeamDetailsActivity.class);
-                startActivity(i);
-            }
-        });
         mRecyclerView = (RecyclerView) findViewById(R.id.add_team_member_recycler_view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(layoutManager);
@@ -83,13 +74,17 @@ public class AddTeamMemberActivity extends AppCompatActivity {
     
     public void getFirebaseData(final String userInput)
     {
+        students.clear();
 
         //get all students info
         databaseReference = firebaseDatabase.getReference("student");
         databaseReference.addValueEventListener(new ValueEventListener() {
 
+
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+                students.clear();
+                validStudents.clear();
                 for (DataSnapshot uniqueKeySnapshot : snapshot.getChildren()) {
                     Student s = new Student("","","","",new ArrayList<String> ());
                     for (DataSnapshot teamSnapshot : uniqueKeySnapshot.child("information").getChildren()) {
@@ -105,6 +100,7 @@ public class AddTeamMemberActivity extends AppCompatActivity {
                     //Log.v("students", String.valueOf(students.size()));
                 }
                 //fill the validStudents Array
+                validStudents.clear();
                 for(int i =0 ; i< students.size();i++) {
                     if (students.get(i).getname().startsWith(userInput))
                     {
@@ -121,6 +117,55 @@ public class AddTeamMemberActivity extends AppCompatActivity {
             }
         });
 
+        //get All Students teams
+        databaseReference = firebaseDatabase.getReference("student");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                int index = 0;
+                for (DataSnapshot uniqueKeySnapshot : snapshot.getChildren()) {
+                    ArrayList<String> teams = new ArrayList<>();
+                    for (DataSnapshot teamSnapshot : uniqueKeySnapshot.child("team").getChildren()) {
+                        String team = (String) teamSnapshot.getValue();
+                        teams.add(team);
+                        Log.v("TAG", team);
+                        mRecyclerView.setAdapter(adapter);
+                    }
+                    students.get(index).setteam(teams);
+                    index++;
+                }}
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.v("The read failed: ", databaseError.getMessage());
+            }
+
+
+        });
+
+        //get sport.
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase.getInstance().getReference().child("coordinator").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Coord coord = snapshot.getValue(Coord.class);
+                    if (coord.getCoordemail().equals(mAuth.getCurrentUser().getEmail())) {
+                        mCoord = coord;
+                    }
+                }
+                Coordsport = mCoord.getCoordSport();
+                Log.v("sport",Coordsport);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
@@ -149,54 +194,53 @@ public class AddTeamMemberActivity extends AppCompatActivity {
             return students.size();
         }
 
-        public class MyViewHolder extends RecyclerView.ViewHolder {
+        public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
             TextView memberName;
             TextView memberEmail;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
+                itemView.setOnClickListener(this);
                 memberName = (TextView) itemView.findViewById(R.id.student_name);
                 memberEmail = (TextView) itemView.findViewById(R.id.student_email);
-                LinearLayout ll = (LinearLayout) itemView.findViewById(R.id.ll_layout);
 
-                ll.setOnClickListener(new View.OnClickListener() {
+            }
 
-                    @Override
-                    public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
+                int pos= getAdapterPosition();
+                int correctpos = 0;
+                ArrayList<String> team = new ArrayList<>();
+                //find position in students array
+                for (int i=0;i<AddTeamMemberActivity.students.size();i++)
+                {
+                    if((validStudents.get(pos).getemail()).equals(AddTeamMemberActivity.students.get(i).getemail()))
+                        correctpos=i;
+                }
+                team.addAll(AddTeamMemberActivity.students.get(correctpos).getteams());
+                Log.v("teams", team.get(0));
+                team.add(Coordsport);
+                Log.v("teams", team.get(0));
 
-                        int pos= getAdapterPosition();
-                        //make background color lighter.
+                //make background color lighter.
 
-                        //write to Firebase and make toast that member added
-                        writeTofirebase(pos);
+                //write to Firebase and make toast that member added
+                writeTofirebase(correctpos, team);
 
-                    }
-                });
             }
         }
 
 
-        public void writeTofirebase(final int pos)
+        public void writeTofirebase(final int pos, final ArrayList<String> team)
         {
-            //get sport.
-            mAuth = FirebaseAuth.getInstance();
-            FirebaseDatabase.getInstance().getReference().child("coordinator").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Coord coord = snapshot.getValue(Coord.class);
-                        if (coord.getCoordemail().equals(mAuth.getCurrentUser().getEmail())) {
-                            mCoord = coord;
-                        }
-                    }
-                    Coordsport = mCoord.getCoordSport();
-                }
+            Log.v("here", String.valueOf(students.size()));
+            Log.v("sport",Coordsport);
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
 
-                }
-            });
+            //final int finalCorrectpos = correctpos;
+
+            //do the writing.
+
 
             //identify student
             databaseReference = firebaseDatabase.getReference("student");
@@ -204,23 +248,19 @@ public class AddTeamMemberActivity extends AppCompatActivity {
 
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
-                    int index =0;
+                    int index =0; String key;
                     for (DataSnapshot uniqueKeySnapshot : snapshot.getChildren()) {
-                        Student s = new Student("","","","",new ArrayList<String> ());
-                        for (DataSnapshot teamSnapshot : uniqueKeySnapshot.child("team").getChildren()) {
-                            if(index==pos)
-                            {
-                                //write.
-                                databaseReference.child(String.valueOf(pos)).setValue(Coordsport);
+                        if(index==pos)
+                        {
+                            key = uniqueKeySnapshot.getKey();
+                        databaseReference.child(key).child("team").setValue(team);
+                        Toast.makeText(getApplicationContext(), "Added to team!",
+                                Toast.LENGTH_LONG).show();
 
-                                //make Toast
-                                Toast.makeText(AddTeamMemberActivity.this,
-                                        students.get(pos).getname()+ " Added!", Toast.LENGTH_SHORT).show();
-
-                            }
                         }
                         index ++;
                     }
+
                 }
 
                 @Override
