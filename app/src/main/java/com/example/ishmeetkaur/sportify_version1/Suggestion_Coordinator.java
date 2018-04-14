@@ -137,7 +137,7 @@ public class Suggestion_Coordinator extends AppCompatActivity
         listDataHeader.add("Intramural");
         listDataHeader.add("Other");
 
-        
+
         listHash.put(listDataHeader.get(0),query_type1);
         listHash.put(listDataHeader.get(1),query_type2);
         listHash.put(listDataHeader.get(2),query_type3);
