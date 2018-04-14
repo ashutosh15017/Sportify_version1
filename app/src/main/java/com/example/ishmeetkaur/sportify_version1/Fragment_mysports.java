@@ -143,7 +143,8 @@ public class Fragment_mysports extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(MyViewHolder holder, int position) {
+        public void onBindViewHolder(MyViewHolder holder, int position)
+        {
             holder.sportName.setText(sportslist.get(position));
             if (sportslist.get(position).equals("football"))
             {

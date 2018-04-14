@@ -44,9 +44,8 @@
         <activity
             android:name=".TeamDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddTeamMemberActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            ></activity>
+
+
     </application>
 
 </manifest>

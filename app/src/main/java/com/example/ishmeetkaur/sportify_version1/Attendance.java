@@ -1,10 +1,20 @@
 package com.example.ishmeetkaur.sportify_version1;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,8 +33,6 @@ public class Attendance extends AppCompatActivity
 {
 
 
-    private ProgressDialog working_dialog;
-
     private FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
 
@@ -33,6 +41,9 @@ public class Attendance extends AppCompatActivity
     private ArrayList<DayAttendance> allDays = new ArrayList<DayAttendance>();
     private int count;
     //private ArrayList<Integer> attendanceArray = new ArrayList<Integer>();
+
+    RecyclerView mRecyclerView;
+    recyler_adapter_attendance adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -48,11 +59,12 @@ public class Attendance extends AppCompatActivity
         Calendar calendar = Calendar.getInstance();
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 
+
         count = dayOfWeek - 1;
         if(count == 0 || count == 6)
             count = 5;
 
-        count = 2;
+
 
         // adding days in the array
 
@@ -70,8 +82,12 @@ public class Attendance extends AppCompatActivity
         getFirebaseData();
 
 
-
-
+        mRecyclerView = (RecyclerView) findViewById(R.id.attendance_recycler_view);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
+        adapter = new recyler_adapter_attendance(allDays);
 
 
 
@@ -121,6 +137,7 @@ public class Attendance extends AppCompatActivity
 
 //                Log.v("new one", team.getName());
 //                Log.v("new one", CoordinatorId);
+                mRecyclerView.setAdapter(adapter);
             }
 
             @Override
@@ -171,6 +188,67 @@ public class Attendance extends AppCompatActivity
         });
 
     }
+
+    public class recyler_adapter_attendance extends RecyclerView.Adapter<recyler_adapter_attendance.ViewHolder1>
+    {
+        ArrayList <DayAttendance> days;
+
+        public recyler_adapter_attendance(ArrayList<DayAttendance> x)
+        {
+            days = x;
+        }
+
+        @Override
+        public ViewHolder1 onCreateViewHolder(ViewGroup parent, int viewType)
+        {
+            View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.attendance_day_recylcer_content,parent,false);
+            return new ViewHolder1(view);
+        }
+
+        @Override
+        public void onBindViewHolder(ViewHolder1 holder, int position)
+        {
+            holder.p.setText(String.valueOf(days.get(position).getPresent()));
+            holder.a.setText(String.valueOf(days.get(position).getAbsent()));
+            holder.m.setText(String.valueOf(days.get(position).getMedical()));
+        }
+
+        @Override
+        public int getItemCount()
+        {
+            return days.size();
+        }
+
+
+        public class ViewHolder1 extends RecyclerView.ViewHolder implements View.OnClickListener
+        {
+            TextView p;
+            TextView a;
+            TextView m;
+
+
+            public ViewHolder1(View itemView)
+            {
+                super(itemView);
+                itemView.setOnClickListener(this);
+                p  = (TextView) itemView.findViewById(R.id.present);
+                a = (TextView) itemView.findViewById(R.id.absent);
+                m = (TextView) itemView.findViewById(R.id.medical);
+            }
+
+            @Override
+            public void onClick(View view)
+            {
+                Log.v("onClick " , String.valueOf(getLayoutPosition()));
+                Intent i11 = new Intent(Attendance.this,Attendance_Clicked.class);
+                int sendThis = getLayoutPosition() +1;
+                i11.putExtra("intVariableName", sendThis);
+                startActivity(i11);
+            }
+        }
+    }
+
+
 
 
 }
