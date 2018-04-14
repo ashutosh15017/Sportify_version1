@@ -9,6 +9,11 @@ public class Suggestion_class
     private int Type;
     private String Text;
 
+    public Suggestion_class()
+    {
+
+    }
+
     public Suggestion_class(int t, String c)
     {
         Type = t;
