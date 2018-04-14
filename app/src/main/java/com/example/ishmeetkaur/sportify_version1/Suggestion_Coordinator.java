@@ -10,6 +10,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import android.support.v7.app.AppCompatActivity;
@@ -46,10 +47,7 @@ public class Suggestion_Coordinator extends AppCompatActivity
 
         getFirebaseData();
 
-        listView = (ExpandableListView)findViewById(R.id.lvExp);
-        initData();
-        listAdapter = new ExpandableListAdapter(this,listDataHeader,listHash);
-        listView.setAdapter(listAdapter);
+
     }
 
     void getFirebaseData()
@@ -107,43 +105,42 @@ public class Suggestion_Coordinator extends AppCompatActivity
             }
         });
 
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
 
+                //after we finish adding all the child, this function will get called
+                listView = (ExpandableListView)findViewById(R.id.lvExp);
+                initData();
+                listAdapter = new ExpandableListAdapter(getApplicationContext(),listDataHeader,listHash);
+                listView.setAdapter(listAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+
+        });
 
     }
 
-    private void initData() {
+    private void initData()
+    {
         listDataHeader = new ArrayList<>();
         listHash = new HashMap<>();
 
-        listDataHeader.add("EDMTDev");
-        listDataHeader.add("Android");
-        listDataHeader.add("Xamarin");
-        listDataHeader.add("UWP");
+        listDataHeader.add("Equipment/Court");
+        listDataHeader.add("Trials");
+        listDataHeader.add("Intramural");
+        listDataHeader.add("Other");
 
-        List<String> edmtDev = new ArrayList<>();
-        edmtDev.add("This is Expandable ListView");
-
-        List<String> androidStudio = new ArrayList<>();
-        androidStudio.add("Expandable ListView");
-        androidStudio.add("Google Map");
-        androidStudio.add("Chat Application");
-        androidStudio.add("Firebase ");
-
-        List<String> xamarin = new ArrayList<>();
-        xamarin.add("Xamarin Expandable ListView");
-        xamarin.add("Xamarin Google Map");
-        xamarin.add("Xamarin Chat Application");
-        xamarin.add("Xamarin Firebase ");
-
-        List<String> uwp = new ArrayList<>();
-        uwp.add("UWP Expandable ListView");
-        uwp.add("UWP Google Map");
-        uwp.add("UWP Chat Application");
-        uwp.add("UWP Firebase ");
-
-        listHash.put(listDataHeader.get(0),edmtDev);
-        listHash.put(listDataHeader.get(1),androidStudio);
-        listHash.put(listDataHeader.get(2),xamarin);
-        listHash.put(listDataHeader.get(3),uwp);
+        
+        listHash.put(listDataHeader.get(0),query_type1);
+        listHash.put(listDataHeader.get(1),query_type2);
+        listHash.put(listDataHeader.get(2),query_type3);
+        listHash.put(listDataHeader.get(3),query_type4);
     }
 }
