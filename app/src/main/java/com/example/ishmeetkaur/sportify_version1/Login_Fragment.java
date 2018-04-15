@@ -52,6 +52,9 @@ public class Login_Fragment extends Fragment {
 
         coordList.add(coord1);
         coordList.add(coord2);
+        coordList.add(coord3);
+        coordList.add(coord4);
+        coordList.add(coord5);
     }
 
     @Override

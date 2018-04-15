@@ -6,142 +6,159 @@
     tools:context="com.example.ishmeetkaur.sportify_version1.SignUp_Fragment"
     android:background="@color/backgroundDark">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        app:srcCompat="@drawable/profile_signup" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:fillViewport="true">
 
-    <ImageView
-        android:id="@+id/imageButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignStart="@+id/imageView2"
-        android:layout_alignTop="@+id/imageView2"
-        android:layout_marginStart="75dp"
-        android:layout_marginTop="77dp"
-        app:srcCompat="@drawable/photo_camera" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/nameInput"
-        android:layout_width="230dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/imageButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
-        android:background="@drawable/text_input"
-        android:ems="10"
-        android:hint="full name"
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="32dp"
+                app:srcCompat="@drawable/profile_signup" />
 
-    <EditText
-        android:id="@+id/emailInput"
-        android:layout_width="230dp"
-        android:layout_height="35dp"
-        android:layout_alignStart="@+id/nameInput"
-        android:layout_below="@+id/nameInput"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/text_input"
-        android:ems="10"
-        android:hint="email"
-        android:inputType="textPersonName"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white" />
+            <ImageView
+                android:id="@+id/imageButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignStart="@+id/imageView2"
+                android:layout_alignTop="@+id/imageView2"
+                android:layout_marginStart="75dp"
+                android:layout_marginTop="77dp"
+                app:srcCompat="@drawable/photo_camera" />
 
-    <EditText
-        android:id="@+id/numInput"
-        android:layout_width="230dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/emailInput"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:inputType="phone"
-        android:hint="phone number"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:background="@drawable/text_input" />
+            <EditText
+                android:id="@+id/nameInput"
+                android:layout_width="230dp"
+                android:layout_height="35dp"
+                android:layout_below="@+id/imageButton"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="46dp"
+                android:background="@drawable/text_input"
+                android:ems="10"
+                android:hint="full name"
+                android:inputType="textPersonName"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white" />
 
-    <EditText
-        android:id="@+id/passInput"
-        android:layout_width="230dp"
-        android:layout_height="35dp"
-        android:layout_alignStart="@+id/numInput"
-        android:layout_below="@+id/numInput"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="password"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:background="@drawable/text_input"/>
+            <EditText
+                android:id="@+id/emailInput"
+                android:layout_width="230dp"
+                android:layout_height="35dp"
+                android:layout_alignStart="@+id/nameInput"
+                android:layout_below="@+id/nameInput"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/text_input"
+                android:ems="10"
+                android:hint="email"
+                android:inputType="textPersonName"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white" />
 
-    <EditText
-        android:id="@+id/passInput2"
-        android:layout_width="230dp"
-        android:layout_height="35dp"
-        android:layout_below="@+id/passInput"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="confirm password"
-        android:textColorHint="@android:color/white"
-        android:textColor="@android:color/white"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:background="@drawable/text_input"/>
+            <EditText
+                android:id="@+id/numInput"
+                android:layout_width="230dp"
+                android:layout_height="35dp"
+                android:layout_below="@+id/emailInput"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:ems="10"
+                android:inputType="phone"
+                android:hint="phone number"
+                android:textColorHint="@android:color/white"
+                android:textColor="@android:color/white"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="@drawable/text_input" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/passInput2"
-        android:layout_below="@+id/passInput2"
-        android:layout_marginTop="30dp"
-        android:text="FEMALE"
-        android:textColor="@android:color/white" />
+            <EditText
+                android:id="@+id/passInput"
+                android:layout_width="230dp"
+                android:layout_height="35dp"
+                android:layout_alignStart="@+id/numInput"
+                android:layout_below="@+id/numInput"
+                android:layout_marginTop="15dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="password"
+                android:textColorHint="@android:color/white"
+                android:textColor="@android:color/white"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="@drawable/text_input"/>
 
-    <CheckBox
-        android:id="@+id/checkFemale"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignBaseline="@+id/textView3"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_marginStart="14dp"
-        android:layout_toEndOf="@+id/textView3"
-        />
+            <EditText
+                android:id="@+id/passInput2"
+                android:layout_width="230dp"
+                android:layout_height="35dp"
+                android:layout_below="@+id/passInput"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="confirm password"
+                android:textColorHint="@android:color/white"
+                android:textColor="@android:color/white"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="@drawable/text_input"/>
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView3"
-        android:layout_alignStart="@+id/imageButton"
-        android:textColor="@android:color/white"
-        android:text="MALE" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/passInput2"
+                android:layout_below="@+id/passInput2"
+                android:layout_marginTop="30dp"
+                android:text="FEMALE"
+                android:textColor="@android:color/white" />
 
-    <CheckBox
-        android:id="@+id/checkMale"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_alignBottom="@+id/checkFemale"
-        android:layout_toEndOf="@+id/imageButton"
-        />
+            <CheckBox
+                android:id="@+id/checkFemale"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignBaseline="@+id/textView3"
+                android:layout_alignBottom="@+id/textView3"
+                android:layout_marginStart="14dp"
+                android:layout_toEndOf="@+id/textView3"
+                />
 
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView3"
+                android:layout_alignStart="@+id/imageButton"
+                android:textColor="@android:color/white"
+                android:text="MALE" />
+
+            <CheckBox
+                android:id="@+id/checkMale"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignBottom="@+id/checkFemale"
+                android:layout_toEndOf="@+id/imageButton"
+                />
+
+        </RelativeLayout>
+
+
+
+
+
+    </ScrollView>
 
     <Button
         android:id="@+id/buttonSignup"
