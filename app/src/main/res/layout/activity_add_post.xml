@@ -19,7 +19,7 @@
         android:ems="10"
         android:inputType="textMultiLine"
         android:maxLines="3"
-        android:maxLength="280"
+        android:maxLength="140"
         android:hint="Post description"
         android:textAlignment="gravity"
         android:gravity="top|left"

@@ -6,6 +6,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -163,6 +164,7 @@ public class Fragment_feeds extends Fragment {
 
 
             holder.postText.setText(postList.get(position).getInfo());
+            holder.postText.setMovementMethod(new ScrollingMovementMethod());
             if (postList.get(position).getIsRegistrationAllowed().equals("yes"))
             {
                 // One click registration

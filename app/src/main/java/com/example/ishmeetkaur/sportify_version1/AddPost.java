@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -42,7 +41,7 @@ public class AddPost extends AppCompatActivity {
 
         postText = (EditText) findViewById(R.id.postText);
         postButton = (Button) findViewById(R.id.postButton);
-        typeSpinner = (Spinner) findViewById(R.id.typeSpinner);
+        //typeSpinner = (Spinner) findViewById(R.id.typeSpinner);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
 
 
@@ -50,7 +49,7 @@ public class AddPost extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
-        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+     /*   typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 type = typeSpinner.getSelectedItem().toString();
@@ -60,7 +59,7 @@ public class AddPost extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
                 type = "general";
             }
-        });
+        });*/
 
 
         postButton.setOnClickListener(new View.OnClickListener() {
