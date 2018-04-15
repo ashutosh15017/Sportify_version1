@@ -151,6 +151,8 @@ public class SignUp_Fragment extends Fragment {
                                     }
                                 });
 
+
+
                             Intent i = new Intent(getActivity(), ChooseSports.class);
                             startActivity(i);
                             Toast.makeText(getActivity(), "Registered", Toast.LENGTH_SHORT).show();

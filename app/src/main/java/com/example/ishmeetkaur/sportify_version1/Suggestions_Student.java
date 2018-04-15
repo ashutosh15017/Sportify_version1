@@ -49,12 +49,12 @@ public class Suggestions_Student extends AppCompatActivity implements OnItemSele
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         myHash = new HashMap<>();
-        myHash.put(1,"PHbYV48BeCUEUYvr8ri1VlXmU382");
-        myHash.put(2,"PHbYV48BeCUEUYvr8ri1VlXmU382");
-        myHash.put(3,"PHbYV48BeCUEUYvr8ri1VlXmU382");
-        myHash.put(4,"PHbYV48BeCUEUYvr8ri1VlXmU382");
-        myHash.put(5,"PHbYV48BeCUEUYvr8ri1VlXmU382");
-        myHash.put(6,"PHbYV48BeCUEUYvr8ri1VlXmU382");
+        myHash.put(1,"WBRhVmbxVMdHgtjEefwOif5hW202");//badi-chauhan
+        myHash.put(2,"1makwFBB2tf7XkU1PI3zTrurmFN2");//basketball
+        myHash.put(3,"2Qm0oeLIr4T54DqAP6SOc6Xw4rV2"); //cricket
+        myHash.put(4,"5o3l2Bm1p8NPj9YqWvZbucJu7iH3"); //football
+        myHash.put(5,"gUcsvm0UA9MbakhYhZHLEwBc8uH3"); // tt
+        myHash.put(6,"WBRhVmbxVMdHgtjEefwOif5hW202"); //volley
         final EditText text1 = (EditText) findViewById(R.id.edit_suggestion);
 
 
@@ -73,7 +73,7 @@ public class Suggestions_Student extends AppCompatActivity implements OnItemSele
 
 
         // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, categories);
 
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
