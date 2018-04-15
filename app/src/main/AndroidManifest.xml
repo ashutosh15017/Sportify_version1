@@ -50,9 +50,11 @@
         <activity
             android:name=".Attendance_Clicked"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Suggestion_Coordinator"
+        <activity
+            android:name=".Suggestion_Coordinator"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Suggestions_Student"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-
     </application>
 
 </manifest>

@@ -45,7 +45,7 @@ public class Suggestion_Coordinator extends AppCompatActivity
     private ExpandableListAdapter listAdapter;
     private List<String> listDataHeader;
     private HashMap<String,List<String>> listHash;
-    private HashMap<String,Integer> myHash;
+
     private String CoordinatorId;
 
     @Override

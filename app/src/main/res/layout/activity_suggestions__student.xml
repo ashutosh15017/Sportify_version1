@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ishmeetkaur.sportify_version1.Suggestions_Student">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Suggestions"
+        android:layout_gravity="center"
+        android:textSize="30sp"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_margin="16dp"
+        />
+
+    <Spinner
+
+        android:layout_margin="16dp"
+        android:fontFamily="sans-serif-light"
+        android:id="@+id/suggestion_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+
+
+    <LinearLayout
+        android:layout_margin="8dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <CheckBox android:id="@+id/check_badi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="badminton"
+
+            android:onClick="onCheckboxClicked"/>
+
+        <CheckBox android:id="@+id/check_bb"
+            android:layout_width="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_height="wrap_content"
+            android:text="basketball"
+            android:onClick="onCheckboxClicked"/>
+
+        <CheckBox android:id="@+id/check_cricket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cricket"
+            android:layout_margin="8dp"
+            android:onClick="onCheckboxClicked"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="8dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <CheckBox android:id="@+id/check_football"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="football"
+            android:onClick="onCheckboxClicked"/>
+
+        <CheckBox android:id="@+id/check_tt"
+            android:layout_width="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_height="wrap_content"
+            android:text="tt"
+            android:onClick="onCheckboxClicked"/>
+
+        <CheckBox android:id="@+id/check_volley"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="volley"
+            android:layout_margin="8dp"
+            android:onClick="onCheckboxClicked"/>
+    </LinearLayout>
+
+    <EditText
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+
+        android:id="@+id/edit_suggestion"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="SUBMIT"
+        android:id="@+id/submit_suggestion"/>
+
+
+</LinearLayout>

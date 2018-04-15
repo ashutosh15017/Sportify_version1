@@ -84,7 +84,7 @@ public class Fragment_mysports extends Fragment {
         button22.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(),Suggestion_Coordinator.class);
+                Intent i = new Intent(getActivity(),Suggestions_Student.class);
                 startActivity(i);
             }
         });
