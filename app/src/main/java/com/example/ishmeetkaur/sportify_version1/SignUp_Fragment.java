@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,15 +23,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link SignUp_Fragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link SignUp_Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class SignUp_Fragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -133,19 +128,35 @@ public class SignUp_Fragment extends Fragment {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful())
                     {
-                        FirebaseUser firebaseUser = mAuth.getCurrentUser();
-                        User userStudent = new User(name,email,number,gender);
-                        try {
-                            databaseReference.child("student").child(firebaseUser.getUid()).child("information").setValue(userStudent);
-                        }catch (NullPointerException e){
 
+                            FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                            User userStudent = new User(name, email, number, gender);
+                            try {
+                                databaseReference.child("student").child(firebaseUser.getUid()).child("information").setValue(userStudent);
+                                ArrayList<String> team = new ArrayList<String>();
+                                team.add("");
+                                databaseReference.child("student").child(firebaseUser.getUid()).child("team").setValue(team);
+                            } catch (NullPointerException e) {
+
+                            }
+
+                        //send verification email
+                        FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Log.v("Email", "Email sent.");
+                                        }
+                                    }
+                                });
+
+                            Intent i = new Intent(getActivity(), ChooseSports.class);
+                            startActivity(i);
+                            Toast.makeText(getActivity(), "Registered", Toast.LENGTH_SHORT).show();
                         }
 
-                        Intent i = new Intent(getActivity(),ChooseSports.class);
-                        startActivity(i);
-                        Toast.makeText(getActivity(), "Registered", Toast.LENGTH_SHORT).show();
 
-                    }
                     else
                     {
                         progressDialog.dismiss();
@@ -154,6 +165,7 @@ public class SignUp_Fragment extends Fragment {
                 }
             });
         }
+
 
     }
 

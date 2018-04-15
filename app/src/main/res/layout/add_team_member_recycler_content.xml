@@ -30,8 +30,8 @@
                 android:layout_height="50dp"
 
                 android:layout_alignStart="@+id/name"
-                android:layout_alignTop="@+id/student_email" />
-
+                android:layout_alignTop="@+id/student_email"
+                card_view:srcCompat="@drawable/email" />
 
 
             <ImageView
@@ -41,11 +41,11 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="5dp"
 
-                />
+                card_view:srcCompat="@drawable/name" />
 
             <TextView
                 android:id="@+id/student_name"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
                 android:layout_alignBottom="@+id/name"
@@ -53,20 +53,23 @@
                 android:layout_gravity="center_vertical"
                 android:text="Member name"
                 android:textColor="@android:color/white"
-                android:textSize="30dp" />
+                android:textSize="30dp"
+                android:layout_toRightOf="@+id/name"
+                android:layout_marginLeft="10dp"/>
 
 
             <TextView
                 android:id="@+id/student_email"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_below="@+id/student_name"
                 android:layout_gravity="center_vertical"
-                android:layout_marginEnd="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/email"
                 android:text="Member Email"
                 android:textColor="@android:color/white"
-                android:textSize="30dp" />
+                android:textSize="25dp" />
 
         </RelativeLayout>
 
