@@ -8,10 +8,29 @@
     android:background="@color/backgroundDark">
 
 
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:paddingLeft="20dp"
+        android:text="team members"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/backgroundLight"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        tools:text="TEAM MEMBERS" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/team_details_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView7"
+        android:layout_marginTop="15dp"
         android:scrollbars="vertical">
 
     </android.support.v7.widget.RecyclerView>
@@ -27,8 +46,6 @@
         android:clickable="true"
         android:backgroundTint="@color/buttonAccent"
         android:src="@drawable/ic_add_black_24dp" />
-
-
 
 
 </RelativeLayout>
