@@ -163,6 +163,7 @@ public class Fragment_feeds extends Fragment {
 
 
             holder.postText.setText(postList.get(position).getInfo());
+
             if (postList.get(position).getIsRegistrationAllowed().equals("yes"))
             {
                 // One click registration
@@ -224,6 +225,7 @@ public class Fragment_feeds extends Fragment {
                 super(itemView);
                 postText  = (TextView) itemView.findViewById(R.id.post_text);
                 oneclick = (Button) itemView.findViewById(R.id.oneclick);
+
             }
         }
     }

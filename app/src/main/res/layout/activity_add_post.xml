@@ -15,9 +15,11 @@
         android:layout_margin="30dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="98dp"
+        android:layout_marginTop="100dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
+        android:maxLines="3"
+        android:maxLength="140"
         android:hint="Post description"
         android:textAlignment="gravity"
         android:gravity="top|left"
@@ -25,15 +27,7 @@
         android:textColorHint="@android:color/white"
         android:textColor="@android:color/white"/>
 
-    <Spinner
-        android:id="@+id/typeSpinner"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:paddingLeft="30dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@drawable/spinner"
-        android:entries="@array/post_type" />
+
 
     <Button
         android:id="@+id/postButton"
@@ -44,41 +38,30 @@
         android:background="@drawable/post_button"
         android:text="Post" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/postButton"
-        android:layout_alignEnd="@+id/typeSpinner"
-        android:layout_marginBottom="25dp"
-        android:clickable="true"
-        android:backgroundTint="@color/buttonAccent"
-        app:srcCompat="@drawable/logout" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/typeSpinner"
-        android:layout_marginTop="40dp"
-        android:layout_toStartOf="@+id/fabLogout"
-        android:textColor="@android:color/white"
-        android:translationZ="1dp"
-        android:paddingBottom="25dp"
-       />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_alignBottom="@+id/checkBox"
-        android:layout_alignEnd="@+id/fabLogout"
+        android:layout_below="@+id/postText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
         android:background="@drawable/check_box"
         android:gravity="center_vertical"
         android:paddingLeft="30dp"
         android:text="Allow registration"
         android:textAlignment="gravity"
         android:textColor="@android:color/black" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView8"
+        android:layout_alignEnd="@+id/textView8"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="12dp"
+       />
 
 
 </RelativeLayout>

@@ -31,8 +31,15 @@ public class Login extends AppCompatActivity {
 
         Coord coord1 = new Coord("Abhishek Chauhan","abhishek15005@iiitd.ac.in","08284844744","volleyball","male");
         Coord coord2 = new Coord("Deepanshu Dabas","deepanshu15023@iiitd.ac.in","09210242008","football","male");
+        Coord coord3 = new Coord("Gunkirat Kaur","gunkirat15032@iiitd.ac.in","9871130053","table tennis","female");
+        Coord coord4 = new Coord("Hemant Rattey","hemant15040@iiitd.ac.in","+91 88005 48443","basketball","male");
+        Coord coord5 = new Coord("Vanshit gupta","vanshit15186@iiitd.ac.in","9990436841","cricket","male");
+
         coordList.add(coord1);
         coordList.add(coord2);
+        coordList.add(coord3);
+        coordList.add(coord4);
+        coordList.add(coord5);
 
         for (Coord coord : coordList)
         {

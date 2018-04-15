@@ -45,9 +45,16 @@ public class Login_Fragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Coord coord1 = new Coord("Abhishek Chauhan","abhishek15005@iiitd.ac.in","08284844744","volleyball","male");
-        Coord coord2 = new Coord("Deepanshu Dabas","deepanshu15023@iiitd.ac.in","09210242008","football","male");
+        Coord coord2 = new Coord("Shivin Das","shivin16091@iiitd.ac.in","9871512830","football","male");
+        Coord coord3 = new Coord("Gunkirat Kaur","gunkirat15032@iiitd.ac.in","9871130053","table tennis","female");
+        Coord coord4 = new Coord("Hemant Rattey","hemant15040@iiitd.ac.in","+91 88005 48443","basketball","male");
+        Coord coord5 = new Coord("Vanshit gupta","vanshit15186@iiitd.ac.in","9990436841","cricket","male");
+
         coordList.add(coord1);
         coordList.add(coord2);
+        coordList.add(coord3);
+        coordList.add(coord4);
+        coordList.add(coord5);
     }
 
     @Override
@@ -98,7 +105,8 @@ public class Login_Fragment extends Fragment {
                     else
                     {
                         Intent intent = new Intent(getActivity(),Home.class);
-                        startActivity(intent);
+                        if(firebaseAuth.getCurrentUser().isEmailVerified())
+                            startActivity(intent);
                     }
 
                 }
@@ -164,7 +172,13 @@ public class Login_Fragment extends Fragment {
                         else
                         {
                             Intent i = new Intent(getActivity(),Home.class);
-                            startActivity(i);
+                            if(FirebaseAuth.getInstance().getCurrentUser().isEmailVerified())
+                                startActivity(i);
+                            else
+                            {
+                                Toast.makeText(getContext(), "Please verify email first!", Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                            }
                         }
 
 

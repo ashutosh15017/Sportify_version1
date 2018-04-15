@@ -26,7 +26,6 @@ public class Home_Coordinator extends AppCompatActivity implements NavigationVie
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home__coordinator);
-
         Toolbar toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar2);
 
@@ -130,6 +129,7 @@ public class Home_Coordinator extends AppCompatActivity implements NavigationVie
     {
         mAuth.signOut();
         Intent i = new Intent(getApplicationContext(),Login.class);
+        //finishActivity(1);
         startActivity(i);
         Toast.makeText(getApplicationContext(), "Logged out", Toast.LENGTH_SHORT).show();
     }

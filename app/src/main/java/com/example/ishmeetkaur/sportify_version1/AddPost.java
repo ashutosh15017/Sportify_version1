@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -42,24 +41,15 @@ public class AddPost extends AppCompatActivity {
 
         postText = (EditText) findViewById(R.id.postText);
         postButton = (Button) findViewById(R.id.postButton);
-        typeSpinner = (Spinner) findViewById(R.id.typeSpinner);
+        //typeSpinner = (Spinner) findViewById(R.id.typeSpinner);
         checkBox = (CheckBox) findViewById(R.id.checkBox);
 
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
-        fabLogout = (FloatingActionButton) findViewById(R.id.fabLogout);
-        fabLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mAuth.signOut();
-                Intent i = new Intent(getApplicationContext(),Login.class);
-                startActivity(i);
-                Toast.makeText(getApplicationContext(), "Logged out", Toast.LENGTH_SHORT).show();
-            }
-        });
-        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+     /*   typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 type = typeSpinner.getSelectedItem().toString();
@@ -69,7 +59,7 @@ public class AddPost extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
                 type = "general";
             }
-        });
+        });*/
 
 
         postButton.setOnClickListener(new View.OnClickListener() {
