@@ -98,7 +98,8 @@ public class Login_Fragment extends Fragment {
                     else
                     {
                         Intent intent = new Intent(getActivity(),Home.class);
-                        startActivity(intent);
+                        if(firebaseAuth.getCurrentUser().isEmailVerified())
+                            startActivity(intent);
                     }
 
                 }
@@ -164,7 +165,13 @@ public class Login_Fragment extends Fragment {
                         else
                         {
                             Intent i = new Intent(getActivity(),Home.class);
-                            startActivity(i);
+                            if(FirebaseAuth.getInstance().getCurrentUser().isEmailVerified())
+                                startActivity(i);
+                            else
+                            {
+                                Toast.makeText(getContext(), "Please verify email first!", Toast.LENGTH_LONG).show();
+                                progressDialog.dismiss();
+                            }
                         }
 
 
