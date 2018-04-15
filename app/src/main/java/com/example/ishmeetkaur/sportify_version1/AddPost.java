@@ -49,16 +49,7 @@ public class AddPost extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
-        fabLogout = (FloatingActionButton) findViewById(R.id.fabLogout);
-        fabLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mAuth.signOut();
-                Intent i = new Intent(getApplicationContext(),Login.class);
-                startActivity(i);
-                Toast.makeText(getApplicationContext(), "Logged out", Toast.LENGTH_SHORT).show();
-            }
-        });
+
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

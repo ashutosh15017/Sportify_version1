@@ -99,7 +99,7 @@ public class SignUp_Fragment extends Fragment {
         email = emailInput.getText().toString().trim();
         number = numInput.getText().toString().trim();
         password = passInput.getText().toString().trim();
-        confirmPassword = passInput.getText().toString().trim();
+        confirmPassword = confirmPasssInput.getText().toString().trim();
 
         if (checkMale.isChecked())
             gender = "male";
@@ -107,6 +107,8 @@ public class SignUp_Fragment extends Fragment {
             gender = "female";
         else if (!checkMale.isChecked() && !checkFemale.isChecked())
             Toast.makeText(getActivity(),"select gender",Toast.LENGTH_SHORT).show();
+        else if (checkMale.isChecked() && checkFemale.isChecked())
+            Toast.makeText(getActivity(),"invalid selection",Toast.LENGTH_SHORT).show();
 
 
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)|| TextUtils.isEmpty(name) || TextUtils.isEmpty(number) || TextUtils.isEmpty(confirmPassword) )
