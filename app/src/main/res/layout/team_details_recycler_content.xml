@@ -26,12 +26,13 @@
                 android:id="@+id/member_email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_alignBottom="@+id/email"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="30dp"
+                android:layout_toEndOf="@+id/email"
                 android:text="Member email"
                 android:textColor="@android:color/white"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/phone"
@@ -45,12 +46,11 @@
                 android:id="@+id/member_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/phone"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
+                android:layout_alignStart="@+id/member_email"
+                android:layout_centerVertical="true"
                 android:text="Member phone"
                 android:textColor="@android:color/white"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/name"
@@ -78,7 +78,7 @@
                 android:layout_marginTop="8dp"
                 android:text="Member name"
                 android:textColor="@android:color/white"
-                android:textSize="25sp" />
+                android:textSize="20sp" />
 
 
         </RelativeLayout>
