@@ -153,6 +153,8 @@ public class SignUp_Fragment extends Fragment {
                                     }
                                 });
 
+
+
                             Intent i = new Intent(getActivity(), ChooseSports.class);
                            if( firebaseUser.isEmailVerified()) {
                                startActivity(i);

@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundDark"
     tools:context="com.example.ishmeetkaur.sportify_version1.Suggestions_Student">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,6 +20,7 @@
         android:textSize="30sp"
         android:fontFamily="sans-serif-condensed"
         android:layout_margin="16dp"
+        android:textColor="@android:color/white"
         />
 
     <Spinner
@@ -23,7 +29,10 @@
         android:fontFamily="sans-serif-light"
         android:id="@+id/suggestion_spinner"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:textColor="@android:color/white"
+        android:layout_height="40dp"
+
+        android:background="@color/colorPrimary"/>
 
 
 
@@ -34,24 +43,33 @@
         android:layout_height="wrap_content">
 
         <CheckBox android:id="@+id/check_badi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:textColor="@android:color/white"
+            android:layout_height="70dp"
             android:layout_margin="8dp"
-            android:text="badminton"
-
+            android:button="@null"
+            android:background="@drawable/suggestion_badi"
             android:onClick="onCheckboxClicked"/>
 
         <CheckBox android:id="@+id/check_bb"
-            android:layout_width="wrap_content"
+
             android:layout_margin="8dp"
-            android:layout_height="wrap_content"
-            android:text="basketball"
+
+            android:textColor="@android:color/white"
+
+            android:layout_height="70dp"
+            android:layout_width="70dp"
+            android:button="@null"
+            android:background="@drawable/suggestion_badi"
             android:onClick="onCheckboxClicked"/>
 
         <CheckBox android:id="@+id/check_cricket"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="cricket"
+            android:layout_height="70dp"
+            android:layout_width="70dp"
+            android:button="@null"
+            android:background="@drawable/suggestion_badi"
+            android:textColor="@android:color/white"
+
             android:layout_margin="8dp"
             android:onClick="onCheckboxClicked"/>
     </LinearLayout>
@@ -59,44 +77,67 @@
     <LinearLayout
         android:layout_margin="8dp"
         android:orientation="horizontal"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <CheckBox android:id="@+id/check_football"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_height="70dp"
+            android:layout_width="70dp"
+            android:button="@null"
+            android:background="@drawable/suggestion_badi"
             android:layout_margin="8dp"
-            android:text="football"
-            android:onClick="onCheckboxClicked"/>
+
+            android:onClick="onCheckboxClicked"
+
+            />
 
         <CheckBox android:id="@+id/check_tt"
-            android:layout_width="wrap_content"
+
             android:layout_margin="8dp"
-            android:layout_height="wrap_content"
-            android:text="tt"
+            android:layout_height="70dp"
+            android:layout_width="70dp"
+            android:button="@null"
+            android:background="@drawable/suggestion_badi"
+
+            android:textColor="@android:color/white"
             android:onClick="onCheckboxClicked"/>
 
         <CheckBox android:id="@+id/check_volley"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="volley"
+            android:layout_height="70dp"
+            android:layout_width="70dp"
+            android:button="@null"
+            android:background="@drawable/suggestion_badi"
             android:layout_margin="8dp"
+            android:textColor="@android:color/white"
             android:onClick="onCheckboxClicked"/>
     </LinearLayout>
 
     <EditText
         android:layout_margin="16dp"
+        android:textColor="@android:color/white"
+
         android:layout_width="match_parent"
         android:layout_height="80dp"
 
         android:id="@+id/edit_suggestion"/>
 
+
+
+    </LinearLayout>
+
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:id="@+id/submit_suggestion"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:text="SUBMIT"
-        android:id="@+id/submit_suggestion"/>
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-light"
+        android:background="@drawable/bottom_button"/>
 
 
-</LinearLayout>
+</RelativeLayout>
