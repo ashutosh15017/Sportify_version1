@@ -107,6 +107,20 @@ public class Suggestions_Student extends AppCompatActivity implements OnItemSele
 
                     Toast.makeText(getBaseContext(),"SUGGESTION SENT",Toast.LENGTH_SHORT).show();
                     text1.getText().clear();
+                    CheckBox badi = findViewById(R.id.check_badi);
+                    CheckBox bb = findViewById(R.id.check_bb);
+                    CheckBox cricket = findViewById(R.id.check_cricket);
+                    CheckBox football = findViewById(R.id.check_football);
+                    CheckBox tt = findViewById(R.id.check_tt);
+                    CheckBox volley = findViewById(R.id.check_volley);
+
+                    badi.setChecked(false);
+                    bb.setChecked(false);
+                    cricket.setChecked(false);
+                    football.setChecked(false);
+                    tt.setChecked(false);
+                    volley.setChecked(false);
+
                     Intent i = new Intent(Suggestions_Student.this,Suggestion_Coordinator.class);
                     startActivity(i);
 

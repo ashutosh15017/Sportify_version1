@@ -206,7 +206,7 @@ public class Suggestion_Coordinator extends AppCompatActivity
     public void deleteFromDatabase(String input)
     {
         firebaseDatabase = FirebaseDatabase.getInstance();
-        firebase_query = firebaseDatabase.getReference("Suggestions").child(CoordinatorId).orderByChild("Text").equalTo(input);
+        firebase_query = firebaseDatabase.getReference("Suggestions").child(CoordinatorId).orderByChild("text").equalTo(input);
 
         firebase_query.addListenerForSingleValueEvent(new ValueEventListener()
         {

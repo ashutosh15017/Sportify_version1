@@ -6,8 +6,8 @@ package com.example.ishmeetkaur.sportify_version1;
 
 public class Suggestion_class
 {
-    private int Type;
-    private String Text;
+    private int type;
+    private String text;
 
     public Suggestion_class()
     {
@@ -16,19 +16,19 @@ public class Suggestion_class
 
     public Suggestion_class(int t, String c)
     {
-        Type = t;
-        Text = c;
+        type = t;
+        text = c;
     }
 
     public String getText()
     {
 
-        return Text;
+        return text;
 
     }
 
     public int getType()
     {
-        return  Type;
+        return  type;
     }
 }
