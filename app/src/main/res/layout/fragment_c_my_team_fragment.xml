@@ -11,21 +11,33 @@
         android:orientation="vertical">
 
         <Button
+            android:layout_marginTop="50dp"
             android:id="@+id/buttonTeamDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="team details" />
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:textColor="@android:color/black"
+            android:text="team details"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/check_box"/>
 
         <Button
             android:id="@+id/buttonAttendance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="attendance" />
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:textColor="@android:color/black"
+            android:text="attendance"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/check_box"/>
 
         <Button
             android:id="@+id/buttonSuggestions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="suggestions" />
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:textColor="@android:color/black"
+            android:text="suggestions"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/check_box"/>
     </LinearLayout>
 </FrameLayout>
