@@ -195,15 +195,30 @@ public class Attendance_Clicked extends AppCompatActivity
             holder.name_text.setText(names.get(position));
 
             if(chosen == 1)
-                holder.status_text.setText(String.valueOf(Day1.get(position)));
+            {
+
+            }
+                //holder.status_text.setText(String.valueOf(Day1.get(position)));
             else if(chosen == 2)
-                holder.status_text.setText(String.valueOf(Day2.get(position)));
+            {
+
+            }
+                //holder.status_text.setText(String.valueOf(Day2.get(position)));
             else if(chosen == 3)
-                holder.status_text.setText(String.valueOf(Day3.get(position)));
+            {
+
+            }
+                //holder.status_text.setText(String.valueOf(Day3.get(position)));
             else if(chosen == 4)
-                holder.status_text.setText(String.valueOf(Day4.get(position)));
+            {
+
+            }
+                //holder.status_text.setText(String.valueOf(Day4.get(position)));
             else if(chosen == 5)
-                holder.status_text.setText(String.valueOf(Day5.get(position)));
+            {
+
+            }
+                //holder.status_text.setText(String.valueOf(Day5.get(position)));
 
 
         }
@@ -224,7 +239,7 @@ public class Attendance_Clicked extends AppCompatActivity
             {
                 super(itemView);
                 name_text  = (TextView) itemView.findViewById(R.id.name);
-                status_text = (TextView) itemView.findViewById(R.id.status);
+                //status_text = (TextView) itemView.findViewById(R.id.status);
 
             }
         }

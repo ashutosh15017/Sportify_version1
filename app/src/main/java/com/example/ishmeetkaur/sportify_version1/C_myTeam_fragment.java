@@ -51,6 +51,15 @@ public class C_myTeam_fragment extends Fragment {
             }
         });
 
+        Button att = (Button) v.findViewById(R.id.buttonAttendance);
+        att.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getContext(),Attendance.class);
+                startActivity(i);
+            }
+        });
+
 
         Button bun2 = (Button) v.findViewById(R.id.buttonSuggestions);
         bun2.setOnClickListener(new View.OnClickListener() {

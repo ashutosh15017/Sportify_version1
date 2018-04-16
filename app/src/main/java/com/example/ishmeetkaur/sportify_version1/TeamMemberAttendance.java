@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 public class TeamMemberAttendance
 {
-    private int Count;
-    private String Name;
-    private int Monday;
-    private int Tuesday;
-    private int Wednesday;
-    private int Thursday;
-    private int Friday;
+    private int count;
+    private String name;
+    private int monday;
+    private int tuesday;
+    private int wednesday;
+    private int thursday;
+    private int friday;
     public ArrayList <Integer> attendanceArray = new ArrayList<Integer>();
 
     public TeamMemberAttendance()
@@ -24,58 +24,58 @@ public class TeamMemberAttendance
 
     public TeamMemberAttendance(int C, String N, int M, int T, int W, int Thurs, int F)
     {
-        Count = C;
-        Name = N;
-        Monday = M;
-        Tuesday = T;
-        Wednesday = W;
-        Thursday = Thurs;
-        Friday = F;
+        count = C;
+        name = N;
+        monday = M;
+        tuesday = T;
+        wednesday = W;
+        thursday = Thurs;
+        friday = F;
 
     }
 
     public String getName()
     {
-        return Name;
+        return name;
     }
 
     public int getMonday()
     {
-        return Monday;
+        return monday;
     }
 
     public int getTuesday()
     {
-        return Tuesday;
+        return tuesday;
     }
 
     public int getWednesday()
     {
-        return Wednesday;
+        return wednesday;
     }
 
     public int getThursday()
     {
-        return Thursday;
+        return thursday;
     }
 
     public int getFriday()
     {
-        return Friday;
+        return friday;
     }
 
     public int getCount()
     {
-        return Count;
+        return count;
     }
 
     public void makeArray()
     {
-        attendanceArray.add(Monday);
-        attendanceArray.add(Tuesday);
-        attendanceArray.add(Wednesday);
-        attendanceArray.add(Thursday);
-        attendanceArray.add(Friday);
+        attendanceArray.add(monday);
+        attendanceArray.add(tuesday);
+        attendanceArray.add(wednesday);
+        attendanceArray.add(thursday);
+        attendanceArray.add(friday);
     }
 
 
