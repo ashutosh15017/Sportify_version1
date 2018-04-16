@@ -45,40 +45,43 @@
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="8dp"
+                android:padding="4dp"
                 android:gravity="center">
 
                 <CheckBox android:id="@+id/present_check"
 
-                    android:layout_margin="16dp"
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
+                    android:layout_margin="20dp"
+                    android:layout_height="45dp"
+                    android:layout_width="45dp"
                     android:button="@null"
                     android:background="@drawable/tick_check"
 
                     android:textColor="@android:color/white"
+
                     />
 
                 <CheckBox android:id="@+id/absent_check"
 
-                    android:layout_margin="16dp"
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
+                    android:layout_margin="20dp"
+                    android:layout_height="45dp"
+                    android:layout_width="45dp"
                     android:button="@null"
-                    android:background="@drawable/suggestion_tt"
+                    android:background="@drawable/cross_check"
 
                     android:textColor="@android:color/white"
-                   />
+
+                    />
 
                 <CheckBox android:id="@+id/medical_check"
 
-                    android:layout_margin="16dp"
-                    android:layout_height="60dp"
-                    android:layout_width="60dp"
+                    android:layout_margin="20dp"
+                    android:layout_height="45dp"
+                    android:layout_width="45dp"
                     android:button="@null"
                     android:background="@drawable/medical_check"
 
                     android:textColor="@android:color/white"
+
                     />
 
 
