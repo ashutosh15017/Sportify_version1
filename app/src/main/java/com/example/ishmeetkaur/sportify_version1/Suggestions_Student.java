@@ -49,12 +49,12 @@ public class Suggestions_Student extends AppCompatActivity implements OnItemSele
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         myHash = new HashMap<>();
-        myHash.put(1,"WBRhVmbxVMdHgtjEefwOif5hW202");//badi-chauhan
-        myHash.put(2,"1makwFBB2tf7XkU1PI3zTrurmFN2");//basketball
-        myHash.put(3,"2Qm0oeLIr4T54DqAP6SOc6Xw4rV2"); //cricket
-        myHash.put(4,"5o3l2Bm1p8NPj9YqWvZbucJu7iH3"); //football
-        myHash.put(5,"gUcsvm0UA9MbakhYhZHLEwBc8uH3"); // tt
-        myHash.put(6,"WBRhVmbxVMdHgtjEefwOif5hW202"); //volley
+        myHash.put(1,"bLHibQ4JNabIwpAbTsyABJFXrdx1");//badi-chauhan
+        myHash.put(2,"43qnQL9GKKNr50SCkOiulh89wDC2");//basketball
+        myHash.put(3,"srqK5H531FNAHRxlN3Upo3HTYAf2"); //cricket
+        myHash.put(4,"uYuzfzB9dxRJ4gLSoM4dFwOyiSY2"); //football
+        myHash.put(5,"A4M01Tjk56egRBgE6rLFEqkDRqy1"); // tt
+        myHash.put(6,"bLHibQ4JNabIwpAbTsyABJFXrdx1"); //volley
         final EditText text1 = (EditText) findViewById(R.id.edit_suggestion);
 
 
