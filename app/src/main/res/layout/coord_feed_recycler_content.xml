@@ -40,7 +40,7 @@
                 android:layout_width="20dp"
                 android:layout_height="23dp"
                 android:id="@+id/removePost"
-                android:background="@drawable/cross_1_white"
+
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"

@@ -11,7 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -195,15 +198,30 @@ public class Attendance_Clicked extends AppCompatActivity
             holder.name_text.setText(names.get(position));
 
             if(chosen == 1)
-                holder.status_text.setText(String.valueOf(Day1.get(position)));
+            {
+
+            }
+                //holder.status_text.setText(String.valueOf(Day1.get(position)));
             else if(chosen == 2)
-                holder.status_text.setText(String.valueOf(Day2.get(position)));
+            {
+
+            }
+                //holder.status_text.setText(String.valueOf(Day2.get(position)));
             else if(chosen == 3)
-                holder.status_text.setText(String.valueOf(Day3.get(position)));
+            {
+
+            }
+                //holder.status_text.setText(String.valueOf(Day3.get(position)));
             else if(chosen == 4)
-                holder.status_text.setText(String.valueOf(Day4.get(position)));
+            {
+
+            }
+                //holder.status_text.setText(String.valueOf(Day4.get(position)));
             else if(chosen == 5)
-                holder.status_text.setText(String.valueOf(Day5.get(position)));
+            {
+
+            }
+                //holder.status_text.setText(String.valueOf(Day5.get(position)));
 
 
         }
@@ -214,20 +232,193 @@ public class Attendance_Clicked extends AppCompatActivity
             return names.size();
         }
 
-        public class ViewHolder2 extends RecyclerView.ViewHolder
+        public class ViewHolder2 extends RecyclerView.ViewHolder implements View.OnClickListener
         {
             TextView name_text;
             TextView status_text;
-
-
+            public CheckBox selectionState;
+            public CheckBox selectionState2;
+            public CheckBox selectionState3;
+            public int k1=100;
+            public int k2=100;
+            public int k3=100;
             public ViewHolder2(View itemView)
             {
                 super(itemView);
                 name_text  = (TextView) itemView.findViewById(R.id.name);
-                status_text = (TextView) itemView.findViewById(R.id.status);
+                selectionState = (CheckBox) itemView.findViewById(R.id.present_check);
+                selectionState2 = (CheckBox) itemView.findViewById(R.id.absent_check);
+                selectionState3 = (CheckBox) itemView.findViewById(R.id.medical_check);
+                //status_text = (TextView) itemView.findViewById(R.id.status);
+
+
+                //item click event listener
+                itemView.setOnClickListener(this);
+
+                //checkbox click event handling
+                selectionState.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+                {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView,
+                                                 boolean isChecked)
+                    {
+                        if (isChecked)
+                        {
+                            //Toast.makeText(ProductFilterRecyclerViewAdapter.this.context,
+                              //      "selected brand is " + brandName.getText(),
+                                //    Toast.LENGTH_LONG).show();
+                            selectionState2.setChecked(false);
+                            selectionState3.setChecked(false);
+                            k1 = 1;
+                        }
+                        else
+                        {
+                            k1 = 100;
+                            Log.v("kkk1","100");
+                        }
+                    }
+                });
+
+
+                //checkbox click event handling
+                selectionState2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+                {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView,
+                                                 boolean isChecked)
+                    {
+                        if (isChecked)
+                        {
+                            //Toast.makeText(ProductFilterRecyclerViewAdapter.this.context,
+                            //      "selected brand is " + brandName.getText(),
+                            //    Toast.LENGTH_LONG).show();
+                            selectionState.setChecked(false);
+                            selectionState3.setChecked(false);
+                            k2 = 1;
+                        }
+                        else
+                        {
+                            k2 = 100;
+                            Log.v("kkk2","100");
+                        }
+                    }
+                });
+
+
+
+                //checkbox click event handling
+                selectionState3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+                {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView,
+                                                 boolean isChecked)
+                    {
+                        if (isChecked)
+                        {
+                            //Toast.makeText(ProductFilterRecyclerViewAdapter.this.context,
+                            //      "selected brand is " + brandName.getText(),
+                            //    Toast.LENGTH_LONG).show();
+                            selectionState2.setChecked(false);
+                            selectionState.setChecked(false);
+                            k3 = 1;
+                        }
+                        else
+                        {
+                            k3 = 100;
+                            Log.v("kkk3","100");
+                        }
+                    }
+                });
+            }
+
+
+            @Override
+            public void onClick(View view)
+            {
 
             }
         }
 
+        public void makeOtherUnchecked(int k)
+        {
+            CheckBox badi = findViewById(R.id.present_check);
+            CheckBox bb = findViewById(R.id.absent_check);
+            CheckBox cricket = findViewById(R.id.medical_check);
+
+
+            if(k == 1)
+            {
+                //badi.setChecked(false);
+                bb.setChecked(false);
+                cricket.setChecked(false);
+
+            }
+            else if(k == 2)
+            {
+                badi.setChecked(false);
+                //bb.setChecked(false);
+                cricket.setChecked(false);
+
+
+            }
+            else if(k == 3)
+            {
+                badi.setChecked(false);
+                bb.setChecked(false);
+                //cricket.setChecked(false);
+
+
+            }
+
+
+
+        }
+
+//        public void onCheckboxClicked2(View view)
+//        {
+//            // Is the view now checked?
+//            boolean checked = ((CheckBox) view).isChecked();
+//
+//            // Check which checkbox was clicked
+//            switch(view.getId())
+//            {
+//                case R.id.present_check:
+//                    if (checked)
+//                    {
+//                        makeOtherUnchecked(1);
+//                    }
+//
+//                    // Put some meat on the sandwich
+//
+//                    // Remove the meat
+//                    break;
+//
+//                case R.id.absent_check:
+//                    if (checked)
+//                    {
+//
+//                        makeOtherUnchecked(2);
+//                    }// Cheese me
+//
+//                    // I'm lactose intolerant
+//                    break;
+//
+//
+//                case R.id.medical_check:
+//                    if (checked)
+//                    {
+//
+//                        makeOtherUnchecked(3);
+//                    }// Cheese me
+//
+//                    // I'm lactose intolerant
+//                    break;
+//
+//
+//            }
+//        }
+
     }
+
+
 }
