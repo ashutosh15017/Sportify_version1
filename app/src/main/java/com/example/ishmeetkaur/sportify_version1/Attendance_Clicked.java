@@ -42,6 +42,7 @@ public class Attendance_Clicked extends AppCompatActivity
     private ArrayList<Integer> day3 = new ArrayList<>();
     private ArrayList<Integer> day4 = new ArrayList<>();
     private ArrayList<Integer> day5 = new ArrayList<>();
+    private ArrayList<String> pushId = new ArrayList<>();
     private int chosen;
 
     private int count;
@@ -106,6 +107,7 @@ public class Attendance_Clicked extends AppCompatActivity
                 TeamMemberAttendance team = dataSnapshot.getValue(TeamMemberAttendance.class);
                 thisTeam.add(team);
                 team.makeArray();
+                String mGroupId = databaseReference.push().getKey();
 
                 name.add(team.getName());
                 day1.add(team.getMonday());
