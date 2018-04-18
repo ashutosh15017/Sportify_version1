@@ -172,6 +172,7 @@ public class Attendance_Clicked extends AppCompatActivity
         private ArrayList<Integer> Day3 = new ArrayList<>();
         private ArrayList<Integer> Day4 = new ArrayList<>();
         private ArrayList<Integer> Day5 = new ArrayList<>();
+        private int myPos; // to save the position
 
         public recyler_adapter_attendance_clicked(ArrayList<String> n,ArrayList<Integer> d1,ArrayList<Integer>d2,
                                                   ArrayList<Integer>d3,ArrayList<Integer>d4,ArrayList<Integer>d5)
@@ -199,31 +200,176 @@ public class Attendance_Clicked extends AppCompatActivity
 
             if(chosen == 1)
             {
-
+                for(int i22=0;i22<Day1.size();i22++)
+                {
+                    if(Day1.get(i22) == 1)
+                    {
+                        holder.selectionState.setChecked(true);
+                        holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        //holder.selectionState.setChecked(false);
+                    }
+                    else if(Day1.get(i22) == 2)
+                    {
+                        holder.selectionState3.setChecked(true);
+                        //holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                    else if(Day1.get(i22) == 0)
+                    {
+                        holder.selectionState2.setChecked(true);
+                        holder.selectionState3.setChecked(false);
+                        //holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                    else if(Day1.get(i22) == 10)
+                    {
+                        holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                }
             }
                 //holder.status_text.setText(String.valueOf(Day1.get(position)));
             else if(chosen == 2)
             {
-
+                for(int i22=0;i22<Day2.size();i22++)
+                {
+                    if(Day2.get(i22) == 1)
+                    {
+                        holder.selectionState.setChecked(true);
+                        holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        //holder.selectionState.setChecked(false);
+                    }
+                    else if(Day2.get(i22) == 2)
+                    {
+                        holder.selectionState3.setChecked(true);
+                        //holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                    else if(Day2.get(i22) == 0)
+                    {
+                        holder.selectionState2.setChecked(true);
+                        holder.selectionState3.setChecked(false);
+                        //holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                    else if(Day2.get(i22) == 10)
+                    {
+                        holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                }
             }
                 //holder.status_text.setText(String.valueOf(Day2.get(position)));
             else if(chosen == 3)
             {
-
+                for(int i22=0;i22<Day3.size();i22++)
+                {
+                    if(Day3.get(i22) == 1)
+                    {
+                        holder.selectionState.setChecked(true);
+                        holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        //holder.selectionState.setChecked(false);
+                    }
+                    else if(Day3.get(i22) == 2)
+                    {
+                        holder.selectionState3.setChecked(true);
+                        //holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                    else if(Day3.get(i22) == 0)
+                    {
+                        holder.selectionState2.setChecked(true);
+                        holder.selectionState3.setChecked(false);
+                        //holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                    else if(Day3.get(i22) == 10)
+                    {
+                        holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                }
             }
                 //holder.status_text.setText(String.valueOf(Day3.get(position)));
             else if(chosen == 4)
             {
-
+                for(int i22=0;i22<Day4.size();i22++)
+                {
+                    if(Day4.get(i22) == 1)
+                    {
+                        holder.selectionState.setChecked(true);
+                        holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        //holder.selectionState.setChecked(false);
+                    }
+                    else if(Day4.get(i22) == 2)
+                    {
+                        holder.selectionState3.setChecked(true);
+                        //holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                    else if(Day4.get(i22) == 0)
+                    {
+                        holder.selectionState2.setChecked(true);
+                        holder.selectionState3.setChecked(false);
+                        //holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                    else if(Day4.get(i22) == 10)
+                    {
+                        holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                }
             }
                 //holder.status_text.setText(String.valueOf(Day4.get(position)));
             else if(chosen == 5)
             {
-
+                for(int i22=0;i22<Day5.size();i22++)
+                {
+                    if(Day5.get(i22) == 1)
+                    {
+                        holder.selectionState.setChecked(true);
+                        holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        //holder.selectionState.setChecked(false);
+                    }
+                    else if(Day5.get(i22) == 2)
+                    {
+                        holder.selectionState3.setChecked(true);
+                        //holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                    else if(Day5.get(i22) == 0)
+                    {
+                        holder.selectionState2.setChecked(true);
+                        holder.selectionState3.setChecked(false);
+                        //holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                    else if(Day5.get(i22) == 10)
+                    {
+                        holder.selectionState3.setChecked(false);
+                        holder.selectionState2.setChecked(false);
+                        holder.selectionState.setChecked(false);
+                    }
+                }
             }
                 //holder.status_text.setText(String.valueOf(Day5.get(position)));
 
-
+            myPos = position;
         }
 
         @Override
