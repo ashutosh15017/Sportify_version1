@@ -39,7 +39,7 @@
         />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/forgotpass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/passInput"
@@ -47,7 +47,9 @@
         android:layout_marginTop="25dp"
         android:text="forgot password?"
         android:textStyle="italic"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white"
+        android:clickable="true"
+        />
 
     <Button
         android:id="@+id/buttonLogin"

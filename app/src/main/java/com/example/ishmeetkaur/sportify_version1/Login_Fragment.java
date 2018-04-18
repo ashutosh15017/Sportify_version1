@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -119,6 +120,24 @@ public class Login_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startLogin();
+            }
+        });
+
+        TextView forgotPass = (TextView) rootView.findViewById(R.id.forgotpass);
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                FirebaseAuth.getInstance().sendPasswordResetEmail(String.valueOf(emailInput.getText()))
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d("email", "Email sent.");
+                                }
+                            }
+                        });
             }
         });
 

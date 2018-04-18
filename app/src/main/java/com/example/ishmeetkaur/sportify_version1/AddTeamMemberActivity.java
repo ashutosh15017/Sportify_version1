@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -207,12 +208,15 @@ public class AddTeamMemberActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int pos= getAdapterPosition();
                 int correctpos = 0;
+                String name="";
                 ArrayList<String> team = new ArrayList<>();
                 //find position in students array
                 for (int i=0;i<AddTeamMemberActivity.students.size();i++)
                 {
-                    if((validStudents.get(pos).getemail()).equals(AddTeamMemberActivity.students.get(i).getemail()))
-                        correctpos=i;
+                    if((validStudents.get(pos).getemail()).equals(AddTeamMemberActivity.students.get(i).getemail())) {
+                        correctpos = i;
+                        name = AddTeamMemberActivity.students.get(i).getname();
+                    }
                 }
                 team.addAll(AddTeamMemberActivity.students.get(correctpos).getteams());
                 Log.v("teams", team.get(0));
@@ -222,13 +226,13 @@ public class AddTeamMemberActivity extends AppCompatActivity {
                 //make background color lighter.
 
                 //write to Firebase and make toast that member added
-                writeTofirebase(correctpos, team);
+                writeTofirebase(correctpos, team,name);
 
             }
         }
 
 
-        public void writeTofirebase(final int pos, final ArrayList<String> team)
+        public void writeTofirebase(final int pos, final ArrayList<String> team, String name)
         {
             Log.v("here", String.valueOf(students.size()));
             Log.v("sport",Coordsport);
@@ -240,7 +244,7 @@ public class AddTeamMemberActivity extends AppCompatActivity {
 
 
             //identify student
-            databaseReference = firebaseDatabase.getReference("student");
+            databaseReference = FirebaseDatabase.getInstance().getReference();
             databaseReference.addValueEventListener(new ValueEventListener() {
 
                 @Override
@@ -250,7 +254,7 @@ public class AddTeamMemberActivity extends AppCompatActivity {
                         if(index==pos)
                         {
                             key = uniqueKeySnapshot.getKey();
-                        databaseReference.child(key).child("team").setValue(team);
+                            databaseReference.child("student").child(key).child("team").setValue(team);
                         Toast.makeText(getApplicationContext(), "Added to team!",
                                 Toast.LENGTH_LONG).show();
 
@@ -265,6 +269,18 @@ public class AddTeamMemberActivity extends AppCompatActivity {
                     Log.v("The read failed: ", databaseError.getMessage());
                 }
             });
+
+            mAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = mAuth.getCurrentUser();
+            final String CoordinatorId = firebaseUser.getUid();
+
+            TeamMemberAttendance team_class = new TeamMemberAttendance(0,name,0,0,0,0,0);
+            databaseReference = FirebaseDatabase.getInstance().getReference();
+
+            String key = databaseReference.child("Coordinator").child(CoordinatorId).child("Team").push().getKey();
+
+            databaseReference.child("Coordinator").child(CoordinatorId).child("Team").child(key).setValue(team_class);
+
 
         }
     }
