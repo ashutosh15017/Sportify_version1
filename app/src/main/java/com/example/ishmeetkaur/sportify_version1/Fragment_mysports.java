@@ -177,14 +177,22 @@ public class Fragment_mysports extends Fragment {
             return sportslist.size();
         }
 
-        public class MyViewHolder extends RecyclerView.ViewHolder
+        public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
         {
             TextView sportName;
             ImageView sportImage;
             public MyViewHolder(View itemView) {
                 super(itemView);
+                itemView.setOnClickListener(this);
                  sportName  = (TextView) itemView.findViewById(R.id.sport_name);
                  sportImage = (ImageView) itemView.findViewById(R.id.sport_image);
+            }
+
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent (getActivity(),SportDetailsActivity.class);
+                startActivity(i);
+                i.putExtra("SPORT", sportslist.get(getAdapterPosition()));
             }
         }
     }

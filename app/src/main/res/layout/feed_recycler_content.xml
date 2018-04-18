@@ -32,6 +32,7 @@
                 android:layout_gravity="center_vertical"
                 android:padding="10dp"
                 android:text="Post text"
+                android:maxLines="3"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
 

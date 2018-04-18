@@ -55,8 +55,11 @@
         <activity
             android:name=".Suggestion_Coordinator"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Suggestions_Student"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Suggestions_Student"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SportDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" ></activity>
     </application>
 
 </manifest>
