@@ -34,6 +34,7 @@ public class AddTeamMemberActivity extends AppCompatActivity {
     static ArrayList<Student> validStudents;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+    DatabaseReference databaseReference2;
     static ArrayList<Student> students;
     private FirebaseAuth mAuth;
     private Coord mCoord;
@@ -272,14 +273,14 @@ public class AddTeamMemberActivity extends AppCompatActivity {
 
             mAuth = FirebaseAuth.getInstance();
             FirebaseUser firebaseUser = mAuth.getCurrentUser();
-            final String CoordinatorId = firebaseUser.getUid();
+            String CoordinatorId = firebaseUser.getUid();
 
             TeamMemberAttendance team_class = new TeamMemberAttendance(0,name,0,0,0,0,0);
-            databaseReference = FirebaseDatabase.getInstance().getReference();
+            databaseReference2 = FirebaseDatabase.getInstance().getReference();
 
-            String key = databaseReference.child("Coordinator").child(CoordinatorId).child("Team").push().getKey();
+            String key = databaseReference2.child("Coordinator").child(CoordinatorId).child("Team").push().getKey();
 
-            databaseReference.child("Coordinator").child(CoordinatorId).child("Team").child(key).setValue(team_class);
+            databaseReference2.child("Coordinator").child(CoordinatorId).child("Team").child(key).setValue(team_class);
 
 
         }

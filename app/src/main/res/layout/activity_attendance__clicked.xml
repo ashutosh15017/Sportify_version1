@@ -21,6 +21,15 @@
         android:textSize="30sp"
         android:layout_margin="14dp"
         android:layout_marginBottom="36dp"/>
+    <Button
+        android:id="@+id/button_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/day_name"
+        android:layout_marginStart="17dp"
+        android:layout_toEndOf="@+id/day_name"
+        android:text="Done" />
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/attendance_recycler_view_clicked"
@@ -32,6 +41,7 @@
         android:scrollbars="vertical">
 
     </android.support.v7.widget.RecyclerView>
+
 
 
 

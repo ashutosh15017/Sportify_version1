@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -125,9 +126,9 @@ public class Attendance extends AppCompatActivity
 
                 for(int k=0;k<c;k++)
                 {
-                    Log.v("lolva", String.valueOf(100));
+
                     v1 = team.attendanceArray.get(k);
-                    Log.v("lolva", String.valueOf(v1));
+
                     allDays.get(k).setValue(v1);
                     Log.v("lolva", String.valueOf(allDays.get(k).getPresent()));
                 }
@@ -144,6 +145,8 @@ public class Attendance extends AppCompatActivity
             public void onChildChanged(DataSnapshot dataSnapshot, String s)
             {
                 // i think empty the list here and refill it i.e. copy the above code
+                //getFirebaseData();
+
             }
 
             @Override
@@ -163,29 +166,29 @@ public class Attendance extends AppCompatActivity
         });
 
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-
-                //after we finish adding all the child, this function will get called
-
-                for(int k1=0;k1<count;k1++)
-                {
-
-
-                    Log.v("new one", String.valueOf(allDays.get(k1).getPresent()));
-                    Log.v("new one", String.valueOf(allDays.get(k1).getAbsent()));
-                    Log.v("new one", String.valueOf(allDays.get(k1).getMedical()));
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-
-        });
+//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            public void onDataChange(DataSnapshot dataSnapshot)
+//            {
+//
+//                //after we finish adding all the child, this function will get called
+//
+//                for(int k1=0;k1<count;k1++)
+//                {
+//
+//
+//                    Log.v("new one", String.valueOf(allDays.get(k1).getPresent()));
+//                    Log.v("new one", String.valueOf(allDays.get(k1).getAbsent()));
+//                    Log.v("new one", String.valueOf(allDays.get(k1).getMedical()));
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//
+//
+//        });
 
     }
 
@@ -249,6 +252,71 @@ public class Attendance extends AppCompatActivity
     }
 
 
+//    public void onPause()
+//    {
+//        super.onPause();
+//        //clearing lists
+//        //Toast.makeText(getApplicationContext(),"Attendance Marked",Toast.LENGTH_SHORT).show();
+//        thisTeam.clear();
+//        allDays.clear();
+//        // finding today's date
+//        Calendar calendar = Calendar.getInstance();
+//        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+//
+//
+//        count = dayOfWeek - 1;
+//        if(count == 0 || count == 6)
+//            count = 5;
+//
+//
+//
+//        // adding days in the array
+//
+//        DayAttendance tempDay;
+//
+//        for(int z=0;z<count;z++)
+//        {
+//            tempDay = new DayAttendance(0,0,0);
+//            allDays.add(tempDay);
+//        }
+//
+//        getFirebaseData();
+//    }
 
+
+
+//    @Override
+//    public void onResume()
+//    {
+//        super.onResume();
+//        //Toast.makeText(getApplicationContext(),"Attendance Marked",Toast.LENGTH_SHORT).show();
+//
+//        //clearing lists
+//        thisTeam.clear();
+//        allDays.clear();
+//
+//        // finding today's date
+//        Calendar calendar = Calendar.getInstance();
+//        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+//
+//
+//        count = dayOfWeek - 1;
+//        if(count == 0 || count == 6)
+//            count = 5;
+//
+//
+//
+//        // adding days in the array
+//
+//        DayAttendance tempDay;
+//
+//        for(int z=0;z<count;z++)
+//        {
+//            tempDay = new DayAttendance(0,0,0);
+//            allDays.add(tempDay);
+//        }
+//        // put your code here...
+//        getFirebaseData();
+//    }
 
 }
