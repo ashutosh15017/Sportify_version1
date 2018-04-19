@@ -2,6 +2,7 @@ package com.example.ishmeetkaur.sportify_version1;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -220,13 +221,17 @@ public class AddTeamMemberActivity extends AppCompatActivity {
                 }
                 team.addAll(AddTeamMemberActivity.students.get(correctpos).getteams());
                 Log.v("teams", team.get(0));
+                Log.v("coord sport",Coordsport);
                 team.add(Coordsport);
                 Log.v("teams", team.get(0));
 
                 //make background color lighter.
 
+
+
                 //write to Firebase and make toast that member added
                 writeTofirebase(correctpos, team,name);
+                Log.v("Pos", String.valueOf(correctpos));
 
             }
         }
@@ -234,8 +239,9 @@ public class AddTeamMemberActivity extends AppCompatActivity {
 
         public void writeTofirebase(final int pos, final ArrayList<String> team, String name)
         {
-            Log.v("here", String.valueOf(students.size()));
+            Log.v("here", String.valueOf(team.size()));
             Log.v("sport",Coordsport);
+            //Logv()
 
 
             //final int finalCorrectpos = correctpos;
@@ -244,9 +250,8 @@ public class AddTeamMemberActivity extends AppCompatActivity {
 
 
             //identify student
-            databaseReference = FirebaseDatabase.getInstance().getReference();
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("student");
             databaseReference.addValueEventListener(new ValueEventListener() {
-
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
                     int index =0; String key;
@@ -254,7 +259,7 @@ public class AddTeamMemberActivity extends AppCompatActivity {
                         if(index==pos)
                         {
                             key = uniqueKeySnapshot.getKey();
-                            databaseReference.child("student").child(key).child("team").setValue(team);
+                            FirebaseDatabase.getInstance().getReference().child("student").child(key).child("team").setValue(team);
                         Toast.makeText(getApplicationContext(), "Added to team!",
                                 Toast.LENGTH_LONG).show();
 
@@ -274,7 +279,7 @@ public class AddTeamMemberActivity extends AppCompatActivity {
             FirebaseUser firebaseUser = mAuth.getCurrentUser();
             final String CoordinatorId = firebaseUser.getUid();
 
-            TeamMemberAttendance team_class = new TeamMemberAttendance(0,name,0,0,0,0,0);
+            TeamMemberAttendance team_class = new TeamMemberAttendance(0,name,10,10,10,10,10);
             databaseReference = FirebaseDatabase.getInstance().getReference();
 
             String key = databaseReference.child("Coordinator").child(CoordinatorId).child("Team").push().getKey();

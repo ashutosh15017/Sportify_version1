@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -192,7 +193,9 @@ public class Fragment_mysports extends Fragment {
             public void onClick(View view) {
                 Intent i = new Intent (getActivity(),SportDetailsActivity.class);
                 startActivity(i);
-                i.putExtra("SPORT", sportslist.get(getAdapterPosition()));
+                i.putExtra("SPORT", sportslist.get(getAdapterPosition()).toString());
+                Log.v("Passed", sportslist.get(getAdapterPosition()));
+
             }
         }
     }

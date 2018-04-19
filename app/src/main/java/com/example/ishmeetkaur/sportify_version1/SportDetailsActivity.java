@@ -1,5 +1,6 @@
 package com.example.ishmeetkaur.sportify_version1;
 
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,7 +40,18 @@ public class SportDetailsActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Coord mCoord;
     private String Coordsport;
+    Handler mHandler;
+    private final Runnable m_Runnable = new Runnable()
+    {
+        public void run()
 
+        {
+            Toast.makeText(getApplicationContext(),"in runnable",Toast.LENGTH_SHORT).show();
+
+            mHandler.postDelayed(m_Runnable, 5000);
+        }
+
+    };//runnable
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,53 +70,99 @@ public class SportDetailsActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         mRecyclerView.setAdapter(adapter);
 
+        String newString= getIntent().getStringExtra("SPORT");
+        TextView sportname = (TextView) findViewById(R.id.sportname);
+        sportname.setText("VOLLEYBALL");
 
-
-        getFirebaseData(savedInstanceState);
+        getFirebaseData(newString);
 
 
     }
 
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
 
-    void getFirebaseData(Bundle savedInstanceState) {
+        //find coord stuff.
+        final ArrayList<Coord> Coordinators = new ArrayList<>();
+
+        databaseReference = firebaseDatabase.getReference("coordinator");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for (DataSnapshot uniqueKeySnapshot : snapshot.getChildren()) {
+                    Coord s = new Coord("","","","","");
+                    for (DataSnapshot teamSnapshot : uniqueKeySnapshot.getChildren()) {
+                        String key = (String) teamSnapshot.getKey();
+                        String value = (String) teamSnapshot.getValue();
+                        String name="",email="",no="";
+                        if (key.equals("coordname"))
+                        {
+                            s.setCoordname(value);
+                            name =value;
+
+                        }
+                        if (key.equals("coordemail"))
+                        {
+                            s.setCoordemail(value);
+                            email = value;
+                        }
+                        if (key.equals("coordNumber"))
+                        {
+                            s.setCoordNumber(value);
+                            no = value;
+                        }
+                        if (key.equals("coordSport"))
+                        {
+                            s.setCoordSport(value);
+                        }
+
+                    }
+                    Coordinators.add(s);
+                    //Log.v("students", String.valueOf(Coordinators.size()));
+                }
+                TextView cordname = findViewById(R.id.cord_namefield);
+                TextView cordemail = findViewById(R.id.cord_emailfield);
+                TextView cordphone = findViewById(R.id.cord_phonefield);
+
+                for(int i=0;i<Coordinators.size();i++)
+                {
+                    Log.v("here", Coordinators.get(i).getCoordname());
+                    if(Coordinators.get(i).getCoordSport().equals("volleyball"))
+                    {
+                        Log.v("here", Coordinators.get(i).getCoordname());
+                        cordemail.setText(Coordinators.get(i).getCoordemail());
+                        cordname.setText(Coordinators.get(i).getCoordname());
+                        cordphone.setText(Coordinators.get(i).getCoordNumber());
+                        Log.v("PHONE",Coordinators.get(i).getCoordNumber());
+                    }
+                }
 
 
-        //find the sport of coordinator
-//        mAuth = FirebaseAuth.getInstance();
-//        FirebaseDatabase.getInstance().getReference().child("coordinator").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    Coord coord = snapshot.getValue(Coord.class);
-//                    if (coord.getCoordemail().equals(mAuth.getCurrentUser().getEmail())) {
-//                        mCoord = coord;
-//                    }
-//                }
-//                Coordsport = mCoord.getCoordSport();
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//
-//
-//        });
-
-        String newString;
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if(extras == null) {
-                newString= null;
-            } else {
-                newString= extras.getString("SPORT");
             }
-        } else {
-            newString= (String) savedInstanceState.getSerializable("SPORT");
-        }
 
-        Coordsport= newString;
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.v("The read failed: ", databaseError.getMessage());
+            }
+        });
+
+
+
+
+
+    }
+
+
+    void getFirebaseData(String newString) {
+        //find coordinator of sport newString
+
+
+       // Coordsport= newString;
+        Coordsport="volleyball";
 
         Log.v("sport", Coordsport);
 
