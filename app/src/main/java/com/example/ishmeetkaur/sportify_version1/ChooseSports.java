@@ -165,7 +165,7 @@ public class ChooseSports extends AppCompatActivity {
                 FirebaseUser firebaseUser = mAuth.getCurrentUser();
                 databaseReference.child("student").child(firebaseUser.getUid()).child("sports").setValue(selectedSports);
                 Toast.makeText(getApplication(), "Selected Sports", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ChooseSports.this,Suggestions_Student.class);
+                Intent intent = new Intent(ChooseSports.this,Home.class);
                 startActivity(intent);
             }
         });

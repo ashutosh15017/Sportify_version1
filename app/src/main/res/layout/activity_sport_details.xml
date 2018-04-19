@@ -144,6 +144,17 @@
 
     </android.support.v7.widget.CardView>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textColor="#FFFFFF"
+        android:text="SUGGESTIONS/COMPLAINS"
+        android:background="@color/colorPrimary"
+        android:textSize="20sp"
+        android:id="@+id/suggestionPlease"
+        android:fontFamily="sans-serif-condensed"/>
+
 
 </RelativeLayout>
 

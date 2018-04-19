@@ -13,17 +13,13 @@
             android:id="@+id/nav_gallery"
             android:icon="@drawable/team_details_logo_white"
             android:textAllCaps = "true"
-            android:title="MY TEAM" />
+            android:title="SELECT SPORT" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/alarm_final"
+            android:icon="@drawable/suggestion_white_logo"
             android:textAllCaps = "true"
-            android:title="REMINDERS" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/profile"
-            android:textAllCaps = "true"
-            android:title="PROFILE" />
+            android:title="SUGGESTIONS/COMPLAINS" />
+
     </group>
 
     <item android:title="">

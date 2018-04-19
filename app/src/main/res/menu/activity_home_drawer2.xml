@@ -36,7 +36,7 @@
                 android:id="@+id/nav_logout2"
                 android:icon="@drawable/logout"
                 android:textAllCaps = "true"
-                android:title="LOG OUT2" />
+                android:title="LOG OUT" />
 
         </menu>
     </item>

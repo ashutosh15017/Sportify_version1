@@ -81,13 +81,10 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_logout) {
+            logOut();
         }
-        else if(id == R.id.action_settings2)
-        {
-            //logOut();
-        }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -99,12 +96,18 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            // home
+            Intent intent = new Intent(Home.this,Home.class);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
+            //select sport
+            Intent intent = new Intent(Home.this,ChooseSports.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+            //suggestion
+            Intent intent = new Intent(Home.this,Suggestions_Student.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_logout) {
            logOut();

@@ -122,7 +122,7 @@ public class Suggestions_Student extends AppCompatActivity implements OnItemSele
                     tt.setChecked(false);
                     volley.setChecked(false);
 
-                    Intent i = new Intent(Suggestions_Student.this,Suggestion_Coordinator.class);
+                    Intent i = new Intent(Suggestions_Student.this,Home.class);
                     startActivity(i);
 
                 }

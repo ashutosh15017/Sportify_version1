@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,6 +75,15 @@ public class SportDetailsActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         mRecyclerView.setAdapter(adapter);
 
+        Button button= (Button) findViewById(R.id.suggestionPlease);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(SportDetailsActivity.this,Suggestions_Student.class);
+                startActivity(intent);
+            }
+        });
 
         TextView cordemail = findViewById(R.id.cord_emailfield);
         TextView cordphone = findViewById(R.id.cord_phonefield);
