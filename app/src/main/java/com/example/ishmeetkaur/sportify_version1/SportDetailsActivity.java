@@ -1,7 +1,12 @@
 package com.example.ishmeetkaur.sportify_version1;
 
+import android.*;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -70,10 +75,48 @@ public class SportDetailsActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         mRecyclerView.setAdapter(adapter);
 
+
+        TextView cordemail = findViewById(R.id.cord_emailfield);
+        TextView cordphone = findViewById(R.id.cord_phonefield);
+        cordphone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.v("yes","call clicked");
+                TextView phoneno = (TextView) findViewById(R.id.cord_phonefield);
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                Log.v("yes",String.valueOf(phoneno.getText()));
+                callIntent.setData(Uri.parse("tel:"+String.valueOf(phoneno.getText())));
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+                        android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(callIntent);
+
+            }
+        });
+        cordemail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TextView email = (TextView) findViewById(R.id.cord_emailfield);
+                String[] to={String.valueOf(email.getText())};
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+                emailIntent.setData(Uri.parse("mailto:"));
+                emailIntent.setType("message/rfc822");
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+                if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(emailIntent);
+                }
+
+            }
+        });
+
+
+
         String newString= getIntent().getStringExtra("SPORT");
+        //Log.v("sport",newString);
         TextView sportname = (TextView) findViewById(R.id.sportname);
         sportname.setText("VOLLEYBALL");
-
         getFirebaseData(newString);
 
 
@@ -155,6 +198,35 @@ public class SportDetailsActivity extends AppCompatActivity {
 
 
     }
+
+    public void Call(View v)
+    {
+        Log.v("yes","call clicked");
+        TextView phoneno = (TextView) findViewById(R.id.cord_phonefield);
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        Log.v("yes",String.valueOf(phoneno.getText()));
+        callIntent.setData(Uri.parse("tel:"+String.valueOf(phoneno.getText())));
+        if (ActivityCompat.checkSelfPermission(this,
+                android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        startActivity(callIntent);
+    }
+
+    public void Email(View v)
+    {
+        TextView email = (TextView) findViewById(R.id.cord_emailfield);
+        String[] to={String.valueOf(email.getText())};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("message/rfc822");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+        if (emailIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(emailIntent);
+        }
+    }
+
 
 
     void getFirebaseData(String newString) {
@@ -256,6 +328,8 @@ public class SportDetailsActivity extends AppCompatActivity {
             return new SportDetailsActivity.recyler_adapter_sportDetails.MyViewHolder(view);
         }
 
+
+
         @Override
         public void onBindViewHolder(SportDetailsActivity.recyler_adapter_sportDetails.MyViewHolder holder, int position) {
             holder.memberEmail.setText(students.get(position).getemail());
@@ -278,6 +352,35 @@ public class SportDetailsActivity extends AppCompatActivity {
                 memberName = (TextView) itemView.findViewById(R.id.member_name);
                 memberPhone = (TextView) itemView.findViewById(R.id.member_phone);
                 memberEmail = (TextView) itemView.findViewById(R.id.member_email);
+                memberPhone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.v("yes","call clicked");
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        Log.v("yes",String.valueOf(memberPhone.getText()));
+                        callIntent.setData(Uri.parse("tel:"+String.valueOf(memberPhone.getText())));
+                        if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+                                android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                        startActivity(callIntent);
+                    }
+                });
+
+                memberEmail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String[] to={String.valueOf(memberEmail.getText())};
+                        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+                        emailIntent.setData(Uri.parse("mailto:"));
+                        emailIntent.setType("message/rfc822");
+                        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+                        if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(emailIntent);
+                        }
+                    }
+                });
             }
         }
     }

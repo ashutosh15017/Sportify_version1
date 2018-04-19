@@ -1,9 +1,12 @@
 package com.example.ishmeetkaur.sportify_version1;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -252,6 +255,35 @@ public class TeamDetailsActivity extends AppCompatActivity {
                 memberName = (TextView) itemView.findViewById(R.id.member_name);
                 memberPhone = (TextView) itemView.findViewById(R.id.member_phone);
                 memberEmail = (TextView) itemView.findViewById(R.id.member_email);
+                memberPhone.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Log.v("yes","call clicked");
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        Log.v("yes",String.valueOf(memberPhone.getText()));
+                        callIntent.setData(Uri.parse("tel:"+String.valueOf(memberPhone.getText())));
+                        if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+                                android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                        startActivity(callIntent);
+                    }
+                });
+
+                memberEmail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String[] to={String.valueOf(memberEmail.getText())};
+                        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+                        emailIntent.setData(Uri.parse("mailto:"));
+                        emailIntent.setType("message/rfc822");
+                        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+                        if (emailIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(emailIntent);
+                        }
+                    }
+                });
             }
         }
     }

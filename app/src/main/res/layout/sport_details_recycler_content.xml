@@ -40,7 +40,8 @@
                 android:layout_height="50dp"
                 android:layout_alignStart="@+id/email"
                 android:layout_centerVertical="true"
-                card_view:srcCompat="@drawable/call" />
+                card_view:srcCompat="@drawable/call"
+                android:onClick="Call2"/>
 
             <TextView
                 android:id="@+id/member_phone"
@@ -67,7 +68,8 @@
                 android:layout_height="50dp"
                 card_view:srcCompat="@drawable/email"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:onClick="Email2"/>
 
             <TextView
                 android:id="@+id/member_name"
