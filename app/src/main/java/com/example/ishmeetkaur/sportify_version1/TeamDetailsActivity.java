@@ -86,6 +86,30 @@ public class TeamDetailsActivity extends AppCompatActivity {
 //        students.clear();
 //        teamStudents.clear();
   //      getFirebaseData();
+        mRecyclerView = (RecyclerView) findViewById(R.id.team_details_recycler_view);
+        fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
+
+        fabAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), AddTeamMemberActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+        students= new ArrayList<>();
+        teamStudents = new ArrayList<>();
+        adapter = new TeamDetailsActivity.recyler_adapter_teamDetails(teamStudents);
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        mRecyclerView.setAdapter(adapter);
+
+        getFirebaseData();
 
     }
 
