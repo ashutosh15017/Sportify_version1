@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
@@ -44,6 +46,7 @@ public class Attendance extends AppCompatActivity
 
     RecyclerView mRecyclerView;
     recyler_adapter_attendance adapter;
+    Calendar calendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -56,7 +59,7 @@ public class Attendance extends AppCompatActivity
         allDays.clear();
 
         // finding today's date
-        Calendar calendar = Calendar.getInstance();
+
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 
 
@@ -125,9 +128,9 @@ public class Attendance extends AppCompatActivity
 
                 for(int k=0;k<c;k++)
                 {
-                    Log.v("lolva", String.valueOf(100));
+
                     v1 = team.attendanceArray.get(k);
-                    Log.v("lolva", String.valueOf(v1));
+
                     allDays.get(k).setValue(v1);
                     Log.v("lolva", String.valueOf(allDays.get(k).getPresent()));
                 }
@@ -144,6 +147,8 @@ public class Attendance extends AppCompatActivity
             public void onChildChanged(DataSnapshot dataSnapshot, String s)
             {
                 // i think empty the list here and refill it i.e. copy the above code
+                //getFirebaseData();
+
             }
 
             @Override
@@ -163,29 +168,29 @@ public class Attendance extends AppCompatActivity
         });
 
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-
-                //after we finish adding all the child, this function will get called
-
-                for(int k1=0;k1<count;k1++)
-                {
-
-
-                    Log.v("new one", String.valueOf(allDays.get(k1).getPresent()));
-                    Log.v("new one", String.valueOf(allDays.get(k1).getAbsent()));
-                    Log.v("new one", String.valueOf(allDays.get(k1).getMedical()));
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-
-        });
+//        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            public void onDataChange(DataSnapshot dataSnapshot)
+//            {
+//
+//                //after we finish adding all the child, this function will get called
+//
+//                for(int k1=0;k1<count;k1++)
+//                {
+//
+//
+//                    Log.v("new one", String.valueOf(allDays.get(k1).getPresent()));
+//                    Log.v("new one", String.valueOf(allDays.get(k1).getAbsent()));
+//                    Log.v("new one", String.valueOf(allDays.get(k1).getMedical()));
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//
+//
+//        });
 
     }
 
@@ -208,9 +213,20 @@ public class Attendance extends AppCompatActivity
         @Override
         public void onBindViewHolder(ViewHolder1 holder, int position)
         {
-            holder.p.setText(String.valueOf(days.get(position).getPresent()));
-            holder.a.setText(String.valueOf(days.get(position).getAbsent()));
-            holder.m.setText(String.valueOf(days.get(position).getMedical()));
+            holder.p.setText("PRESENT: "+String.valueOf(days.get(position).getPresent()));
+            holder.a.setText("ABSENT: "+String.valueOf(days.get(position).getAbsent()));
+            holder.m.setText("MEDICAL: "+String.valueOf(days.get(position).getMedical()));
+
+            if(position == 0)
+                holder.w.setText("monday");
+            else if(position == 1)
+                holder.w.setText("tuesday");
+            else if(position == 2)
+                holder.w.setText("wednesday");
+            else if(position == 3)
+                holder.w.setText("thursday");
+            else if(position == 4)
+                holder.w.setText("friday");
         }
 
         @Override
@@ -225,6 +241,10 @@ public class Attendance extends AppCompatActivity
             TextView p;
             TextView a;
             TextView m;
+            TextView w;
+
+//            int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+//            String weekday = new DateFormatSymbols().getWeekdays()[dayOfWeek];
 
 
             public ViewHolder1(View itemView)
@@ -234,6 +254,7 @@ public class Attendance extends AppCompatActivity
                 p  = (TextView) itemView.findViewById(R.id.present);
                 a = (TextView) itemView.findViewById(R.id.absent);
                 m = (TextView) itemView.findViewById(R.id.medical);
+                w = (TextView) itemView.findViewById(R.id.whichDay);
             }
 
             @Override
@@ -249,6 +270,71 @@ public class Attendance extends AppCompatActivity
     }
 
 
+//    public void onPause()
+//    {
+//        super.onPause();
+//        //clearing lists
+//        //Toast.makeText(getApplicationContext(),"Attendance Marked",Toast.LENGTH_SHORT).show();
+//        thisTeam.clear();
+//        allDays.clear();
+//        // finding today's date
+//        Calendar calendar = Calendar.getInstance();
+//        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+//
+//
+//        count = dayOfWeek - 1;
+//        if(count == 0 || count == 6)
+//            count = 5;
+//
+//
+//
+//        // adding days in the array
+//
+//        DayAttendance tempDay;
+//
+//        for(int z=0;z<count;z++)
+//        {
+//            tempDay = new DayAttendance(0,0,0);
+//            allDays.add(tempDay);
+//        }
+//
+//        getFirebaseData();
+//    }
 
+
+
+//    @Override
+//    public void onResume()
+//    {
+//        super.onResume();
+//        //Toast.makeText(getApplicationContext(),"Attendance Marked",Toast.LENGTH_SHORT).show();
+//
+//        //clearing lists
+//        thisTeam.clear();
+//        allDays.clear();
+//
+//        // finding today's date
+//        Calendar calendar = Calendar.getInstance();
+//        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+//
+//
+//        count = dayOfWeek - 1;
+//        if(count == 0 || count == 6)
+//            count = 5;
+//
+//
+//
+//        // adding days in the array
+//
+//        DayAttendance tempDay;
+//
+//        for(int z=0;z<count;z++)
+//        {
+//            tempDay = new DayAttendance(0,0,0);
+//            allDays.add(tempDay);
+//        }
+//        // put your code here...
+//        getFirebaseData();
+//    }
 
 }

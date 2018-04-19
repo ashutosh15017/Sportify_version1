@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/myBlack"
+    android:orientation="vertical"
     tools:context="com.example.ishmeetkaur.sportify_version1.Attendance_Clicked">
 
     <TextView
         android:id="@+id/day_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="16dp"
+        android:layout_margin="16dp"
 
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-condensed"
         android:text="TextView"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        android:layout_margin="14dp"
-        android:layout_marginBottom="36dp"/>
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_weight="0"/>
+
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/attendance_recycler_view_clicked"
@@ -28,11 +32,25 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp"
-        android:scrollbars="vertical">
+
+        android:scrollbars="vertical"
+        android:layout_weight="1">
+
 
     </android.support.v7.widget.RecyclerView>
 
+    <Button
+
+        android:id="@+id/button_done"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:text="Submit"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:layout_weight="0"
+        android:fontFamily="sans-serif-condensed"/>
 
 
-</RelativeLayout>
+</LinearLayout>

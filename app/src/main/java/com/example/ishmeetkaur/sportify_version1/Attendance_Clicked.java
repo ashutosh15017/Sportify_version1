@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -34,6 +35,8 @@ public class Attendance_Clicked extends AppCompatActivity
     FirebaseDatabase firebaseDatabase;
 
     DatabaseReference databaseReference;
+    DatabaseReference databaseReference2;
+
     private ArrayList<TeamMemberAttendance> thisTeam = new ArrayList<>();
     private ArrayList<DayAttendance> allDays = new ArrayList<DayAttendance>();
     private ArrayList<String> name = new ArrayList<>();
@@ -44,7 +47,7 @@ public class Attendance_Clicked extends AppCompatActivity
     private ArrayList<Integer> day5 = new ArrayList<>();
     private ArrayList<String> pushId = new ArrayList<>();
     private int chosen;
-
+    String CoordinatorId = "";
     private int count;
 
     RecyclerView mRecyclerView;
@@ -85,6 +88,18 @@ public class Attendance_Clicked extends AppCompatActivity
         else if(chosen == 5)
             dayN.setText("Friday");
 
+        Button button= (Button) findViewById(R.id.button_done);
+        button.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Toast.makeText(getApplicationContext(),"Attendance Marked",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Attendance_Clicked.this,Attendance.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     void getFirebaseData()
@@ -93,10 +108,10 @@ public class Attendance_Clicked extends AppCompatActivity
         // store his name and email(from child info)
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        final String CoordinatorId = firebaseUser.getUid();
+        CoordinatorId = firebaseUser.getUid();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Coordinator").child(CoordinatorId).child("Team");
-
+        //databaseReference2 = FirebaseDatabase.getInstance().getReference("Coordinator");
 
         final int finalCount = count;
         databaseReference.addChildEventListener(new ChildEventListener()
@@ -107,7 +122,11 @@ public class Attendance_Clicked extends AppCompatActivity
                 TeamMemberAttendance team = dataSnapshot.getValue(TeamMemberAttendance.class);
                 thisTeam.add(team);
                 team.makeArray();
-                String mGroupId = databaseReference.push().getKey();
+
+//                String mGroupId = databaseReference.push().getKey();
+//                databaseReference2.child(CoordinatorId).child("Team")
+//                        .child(mGroupId).child("count").setValue(50);
+
 
                 name.add(team.getName());
                 day1.add(team.getMonday());
@@ -122,6 +141,10 @@ public class Attendance_Clicked extends AppCompatActivity
 //                Log.v("new one", team.getName());
 //                Log.v("new one", CoordinatorId);
                 mRecyclerView.setAdapter(adapter);
+
+                pushId.add(dataSnapshot.getKey());
+
+                Log.v("ishii",dataSnapshot.getKey());
             }
 
             @Override
@@ -174,7 +197,7 @@ public class Attendance_Clicked extends AppCompatActivity
         private ArrayList<Integer> Day3 = new ArrayList<>();
         private ArrayList<Integer> Day4 = new ArrayList<>();
         private ArrayList<Integer> Day5 = new ArrayList<>();
-        private int myPos; // to save the position
+        private int myPos = 0; // to save the position
 
         public recyler_adapter_attendance_clicked(ArrayList<String> n,ArrayList<Integer> d1,ArrayList<Integer>d2,
                                                   ArrayList<Integer>d3,ArrayList<Integer>d4,ArrayList<Integer>d5)
@@ -198,11 +221,13 @@ public class Attendance_Clicked extends AppCompatActivity
         @Override
         public void onBindViewHolder(ViewHolder2 holder, int position)
         {
+            int i22 = position;
+
             holder.name_text.setText(names.get(position));
 
             if(chosen == 1)
             {
-                for(int i22=0;i22<Day1.size();i22++)
+                //for(int i22=0;i22<Day1.size();i22++)
                 {
                     if(Day1.get(i22) == 1)
                     {
@@ -225,18 +250,18 @@ public class Attendance_Clicked extends AppCompatActivity
                         //holder.selectionState2.setChecked(false);
                         holder.selectionState.setChecked(false);
                     }
-                    else if(Day1.get(i22) == 10)
-                    {
-                        holder.selectionState3.setChecked(false);
-                        holder.selectionState2.setChecked(false);
-                        holder.selectionState.setChecked(false);
-                    }
+//                    else if(Day1.get(i22) == 10)
+//                    {
+//                        holder.selectionState3.setChecked(false);
+//                        holder.selectionState2.setChecked(false);
+//                        holder.selectionState.setChecked(false);
+//                    }
                 }
             }
                 //holder.status_text.setText(String.valueOf(Day1.get(position)));
             else if(chosen == 2)
             {
-                for(int i22=0;i22<Day2.size();i22++)
+                //for(int i22=0;i22<Day2.size();i22++)
                 {
                     if(Day2.get(i22) == 1)
                     {
@@ -259,18 +284,18 @@ public class Attendance_Clicked extends AppCompatActivity
                         //holder.selectionState2.setChecked(false);
                         holder.selectionState.setChecked(false);
                     }
-                    else if(Day2.get(i22) == 10)
-                    {
-                        holder.selectionState3.setChecked(false);
-                        holder.selectionState2.setChecked(false);
-                        holder.selectionState.setChecked(false);
-                    }
+//                    else if(Day2.get(i22) == 10)
+//                    {
+//                        holder.selectionState3.setChecked(false);
+//                        holder.selectionState2.setChecked(false);
+//                        holder.selectionState.setChecked(false);
+//                    }
                 }
             }
                 //holder.status_text.setText(String.valueOf(Day2.get(position)));
             else if(chosen == 3)
             {
-                for(int i22=0;i22<Day3.size();i22++)
+                //for(int i22=0;i22<Day3.size();i22++)
                 {
                     if(Day3.get(i22) == 1)
                     {
@@ -293,18 +318,18 @@ public class Attendance_Clicked extends AppCompatActivity
                         //holder.selectionState2.setChecked(false);
                         holder.selectionState.setChecked(false);
                     }
-                    else if(Day3.get(i22) == 10)
-                    {
-                        holder.selectionState3.setChecked(false);
-                        holder.selectionState2.setChecked(false);
-                        holder.selectionState.setChecked(false);
-                    }
+//                    else if(Day3.get(i22) == 10)
+//                    {
+//                        holder.selectionState3.setChecked(false);
+//                        holder.selectionState2.setChecked(false);
+//                        holder.selectionState.setChecked(false);
+//                    }
                 }
             }
                 //holder.status_text.setText(String.valueOf(Day3.get(position)));
             else if(chosen == 4)
             {
-                for(int i22=0;i22<Day4.size();i22++)
+                //for(int i22=0;i22<Day4.size();i22++)
                 {
                     if(Day4.get(i22) == 1)
                     {
@@ -327,18 +352,18 @@ public class Attendance_Clicked extends AppCompatActivity
                         //holder.selectionState2.setChecked(false);
                         holder.selectionState.setChecked(false);
                     }
-                    else if(Day4.get(i22) == 10)
-                    {
-                        holder.selectionState3.setChecked(false);
-                        holder.selectionState2.setChecked(false);
-                        holder.selectionState.setChecked(false);
-                    }
+//                    else if(Day4.get(i22) == 10)
+//                    {
+//                        holder.selectionState3.setChecked(false);
+//                        holder.selectionState2.setChecked(false);
+//                        holder.selectionState.setChecked(false);
+//                    }
                 }
             }
                 //holder.status_text.setText(String.valueOf(Day4.get(position)));
             else if(chosen == 5)
             {
-                for(int i22=0;i22<Day5.size();i22++)
+                //for(int i22=0;i22<Day5.size();i22++)
                 {
                     if(Day5.get(i22) == 1)
                     {
@@ -361,12 +386,12 @@ public class Attendance_Clicked extends AppCompatActivity
                         //holder.selectionState2.setChecked(false);
                         holder.selectionState.setChecked(false);
                     }
-                    else if(Day5.get(i22) == 10)
-                    {
-                        holder.selectionState3.setChecked(false);
-                        holder.selectionState2.setChecked(false);
-                        holder.selectionState.setChecked(false);
-                    }
+//                    else if(Day5.get(i22) == 10)
+//                    {
+//                        holder.selectionState3.setChecked(false);
+//                        holder.selectionState2.setChecked(false);
+//                        holder.selectionState.setChecked(false);
+//                    }
                 }
             }
                 //holder.status_text.setText(String.valueOf(Day5.get(position)));
@@ -399,11 +424,24 @@ public class Attendance_Clicked extends AppCompatActivity
                 selectionState3 = (CheckBox) itemView.findViewById(R.id.medical_check);
                 //status_text = (TextView) itemView.findViewById(R.id.status);
 
+                String dd = "";
+
+                if(chosen == 1)
+                    dd = "monday";
+                else if(chosen == 2)
+                    dd = "tuesday";
+                else if(chosen == 3)
+                    dd = "wednesday";
+                else if(chosen == 4)
+                    dd = "thursday";
+                else if(chosen == 5)
+                    dd = "friday";
 
                 //item click event listener
                 itemView.setOnClickListener(this);
 
                 //checkbox click event handling
+                final String finalDd = dd;
                 selectionState.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
                 {
                     @Override
@@ -418,9 +456,19 @@ public class Attendance_Clicked extends AppCompatActivity
                             selectionState2.setChecked(false);
                             selectionState3.setChecked(false);
                             k1 = 1;
+
+                           //firebaseDatabase = FirebaseDatabase.getInstance();
+                            databaseReference2 = firebaseDatabase.getReference("Coordinator").child(CoordinatorId).child("Team").child(pushId.get(getAdapterPosition()));
+                            // now i am at the child
+                            databaseReference2.child(finalDd).setValue(1);
+                            Log.v("ishii2", String.valueOf(getAdapterPosition()));
                         }
                         else
                         {
+                            //firebaseDatabase = FirebaseDatabase.getInstance();
+                            databaseReference2 = firebaseDatabase.getReference("Coordinator").child(CoordinatorId).child("Team").child(pushId.get(getAdapterPosition()));
+                            // now i am at the child
+                            databaseReference2.child(finalDd).setValue(10);
                             k1 = 100;
                             Log.v("kkk1","100");
                         }
@@ -443,11 +491,18 @@ public class Attendance_Clicked extends AppCompatActivity
                             selectionState.setChecked(false);
                             selectionState3.setChecked(false);
                             k2 = 1;
+
+                            databaseReference2 = firebaseDatabase.getReference("Coordinator").child(CoordinatorId).child("Team").child(pushId.get(getAdapterPosition()));
+                            // now i am at the child
+                            databaseReference2.child(finalDd).setValue(0);
                         }
                         else
                         {
                             k2 = 100;
                             Log.v("kkk2","100");
+                            databaseReference2 = firebaseDatabase.getReference("Coordinator").child(CoordinatorId).child("Team").child(pushId.get(getAdapterPosition()));
+                            // now i am at the child
+                            databaseReference2.child(finalDd).setValue(10);
                         }
                     }
                 });
@@ -469,11 +524,18 @@ public class Attendance_Clicked extends AppCompatActivity
                             selectionState2.setChecked(false);
                             selectionState.setChecked(false);
                             k3 = 1;
+
+                            databaseReference2 = firebaseDatabase.getReference("Coordinator").child(CoordinatorId).child("Team").child(pushId.get(getAdapterPosition()));
+                            // now i am at the child
+                            databaseReference2.child(finalDd).setValue(2);
                         }
                         else
                         {
                             k3 = 100;
                             Log.v("kkk3","100");
+                            databaseReference2 = firebaseDatabase.getReference("Coordinator").child(CoordinatorId).child("Team").child(pushId.get(getAdapterPosition()));
+                            // now i am at the child
+                            databaseReference2.child(finalDd).setValue(10);
                         }
                     }
                 });
@@ -567,6 +629,22 @@ public class Attendance_Clicked extends AppCompatActivity
 //        }
 
     }
+
+//    public void onPause()
+//    {
+//        super.onPause();
+//        getFirebaseData();
+//    }
+//
+//
+//
+//    @Override
+//    public void onResume()
+//    {
+//        super.onResume();
+//        // put your code here...
+//        getFirebaseData();
+//    }
 
 
 }
