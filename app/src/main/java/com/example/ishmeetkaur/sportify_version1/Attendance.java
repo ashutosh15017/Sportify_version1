@@ -26,6 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
@@ -45,6 +46,7 @@ public class Attendance extends AppCompatActivity
 
     RecyclerView mRecyclerView;
     recyler_adapter_attendance adapter;
+    Calendar calendar = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -57,7 +59,7 @@ public class Attendance extends AppCompatActivity
         allDays.clear();
 
         // finding today's date
-        Calendar calendar = Calendar.getInstance();
+
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 
 
@@ -211,9 +213,20 @@ public class Attendance extends AppCompatActivity
         @Override
         public void onBindViewHolder(ViewHolder1 holder, int position)
         {
-            holder.p.setText(String.valueOf(days.get(position).getPresent()));
-            holder.a.setText(String.valueOf(days.get(position).getAbsent()));
-            holder.m.setText(String.valueOf(days.get(position).getMedical()));
+            holder.p.setText("PRESENT: "+String.valueOf(days.get(position).getPresent()));
+            holder.a.setText("ABSENT: "+String.valueOf(days.get(position).getAbsent()));
+            holder.m.setText("MEDICAL: "+String.valueOf(days.get(position).getMedical()));
+
+            if(position == 0)
+                holder.w.setText("monday");
+            else if(position == 1)
+                holder.w.setText("tuesday");
+            else if(position == 2)
+                holder.w.setText("wednesday");
+            else if(position == 3)
+                holder.w.setText("thursday");
+            else if(position == 4)
+                holder.w.setText("friday");
         }
 
         @Override
@@ -228,6 +241,10 @@ public class Attendance extends AppCompatActivity
             TextView p;
             TextView a;
             TextView m;
+            TextView w;
+
+//            int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+//            String weekday = new DateFormatSymbols().getWeekdays()[dayOfWeek];
 
 
             public ViewHolder1(View itemView)
@@ -237,6 +254,7 @@ public class Attendance extends AppCompatActivity
                 p  = (TextView) itemView.findViewById(R.id.present);
                 a = (TextView) itemView.findViewById(R.id.absent);
                 m = (TextView) itemView.findViewById(R.id.medical);
+                w = (TextView) itemView.findViewById(R.id.whichDay);
             }
 
             @Override

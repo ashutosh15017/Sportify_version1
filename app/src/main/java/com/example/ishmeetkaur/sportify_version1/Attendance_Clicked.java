@@ -491,11 +491,18 @@ public class Attendance_Clicked extends AppCompatActivity
                             selectionState.setChecked(false);
                             selectionState3.setChecked(false);
                             k2 = 1;
+
+                            databaseReference2 = firebaseDatabase.getReference("Coordinator").child(CoordinatorId).child("Team").child(pushId.get(getAdapterPosition()));
+                            // now i am at the child
+                            databaseReference2.child(finalDd).setValue(0);
                         }
                         else
                         {
                             k2 = 100;
                             Log.v("kkk2","100");
+                            databaseReference2 = firebaseDatabase.getReference("Coordinator").child(CoordinatorId).child("Team").child(pushId.get(getAdapterPosition()));
+                            // now i am at the child
+                            databaseReference2.child(finalDd).setValue(10);
                         }
                     }
                 });
@@ -517,11 +524,18 @@ public class Attendance_Clicked extends AppCompatActivity
                             selectionState2.setChecked(false);
                             selectionState.setChecked(false);
                             k3 = 1;
+
+                            databaseReference2 = firebaseDatabase.getReference("Coordinator").child(CoordinatorId).child("Team").child(pushId.get(getAdapterPosition()));
+                            // now i am at the child
+                            databaseReference2.child(finalDd).setValue(2);
                         }
                         else
                         {
                             k3 = 100;
                             Log.v("kkk3","100");
+                            databaseReference2 = firebaseDatabase.getReference("Coordinator").child(CoordinatorId).child("Team").child(pushId.get(getAdapterPosition()));
+                            // now i am at the child
+                            databaseReference2.child(finalDd).setValue(10);
                         }
                     }
                 });
