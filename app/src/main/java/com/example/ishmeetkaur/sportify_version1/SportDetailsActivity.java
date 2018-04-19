@@ -115,8 +115,9 @@ public class SportDetailsActivity extends AppCompatActivity {
 
         String newString= getIntent().getStringExtra("SPORT");
         //Log.v("sport",newString);
+        newString="volleyball";
         TextView sportname = (TextView) findViewById(R.id.sportname);
-        sportname.setText("VOLLEYBALL");
+        sportname.setText(newString);
         getFirebaseData(newString);
 
 
@@ -127,6 +128,45 @@ public class SportDetailsActivity extends AppCompatActivity {
     protected void onResume()
     {
         super.onResume();
+
+
+
+
+
+
+    }
+
+    public void Call(View v)
+    {
+        Log.v("yes","call clicked");
+        TextView phoneno = (TextView) findViewById(R.id.cord_phonefield);
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        Log.v("yes",String.valueOf(phoneno.getText()));
+        callIntent.setData(Uri.parse("tel:"+String.valueOf(phoneno.getText())));
+        if (ActivityCompat.checkSelfPermission(this,
+                android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        startActivity(callIntent);
+    }
+
+    public void Email(View v)
+    {
+        TextView email = (TextView) findViewById(R.id.cord_emailfield);
+        String[] to={String.valueOf(email.getText())};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("message/rfc822");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+        if (emailIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(emailIntent);
+        }
+    }
+
+
+
+    void getFirebaseData(String newString) {
 
         //find coord stuff.
         final ArrayList<Coord> Coordinators = new ArrayList<>();
@@ -174,7 +214,7 @@ public class SportDetailsActivity extends AppCompatActivity {
                 for(int i=0;i<Coordinators.size();i++)
                 {
                     Log.v("here", Coordinators.get(i).getCoordname());
-                    if(Coordinators.get(i).getCoordSport().equals("volleyball"))
+                    if(Coordinators.get(i).getCoordSport().equals(Coordsport))
                     {
                         Log.v("here", Coordinators.get(i).getCoordname());
                         cordemail.setText(Coordinators.get(i).getCoordemail());
@@ -194,47 +234,8 @@ public class SportDetailsActivity extends AppCompatActivity {
         });
 
 
-
-
-
-    }
-
-    public void Call(View v)
-    {
-        Log.v("yes","call clicked");
-        TextView phoneno = (TextView) findViewById(R.id.cord_phonefield);
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        Log.v("yes",String.valueOf(phoneno.getText()));
-        callIntent.setData(Uri.parse("tel:"+String.valueOf(phoneno.getText())));
-        if (ActivityCompat.checkSelfPermission(this,
-                android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        startActivity(callIntent);
-    }
-
-    public void Email(View v)
-    {
-        TextView email = (TextView) findViewById(R.id.cord_emailfield);
-        String[] to={String.valueOf(email.getText())};
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("message/rfc822");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
-        if (emailIntent.resolveActivity(getPackageManager()) != null) {
-            startActivity(emailIntent);
-        }
-    }
-
-
-
-    void getFirebaseData(String newString) {
-        //find coordinator of sport newString
-
-
        // Coordsport= newString;
-        Coordsport="volleyball";
+        Coordsport=newString;
 
         Log.v("sport", Coordsport);
 

@@ -37,6 +37,7 @@
                 android:layout_marginLeft="50dp"
                 android:text="Sport name"
                 android:textColor="@android:color/white"
+                android:fontFamily="sans-serif-smallcaps"
                 />
 
         </LinearLayout>

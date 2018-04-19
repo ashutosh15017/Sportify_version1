@@ -73,6 +73,28 @@ public class AddTeamMemberActivity extends AppCompatActivity {
     
     public void getFirebaseData(final String userInput)
     {
+        //get sport.
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseDatabase.getInstance().getReference().child("coordinator").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Coord coord = snapshot.getValue(Coord.class);
+                    if (coord.getCoordemail().equals(mAuth.getCurrentUser().getEmail())) {
+                        mCoord = coord;
+                    }
+                }
+                Coordsport = mCoord.getCoordSport();
+                Log.v("sport",Coordsport);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
         students.clear();
 
         //get all students info
@@ -98,16 +120,56 @@ public class AddTeamMemberActivity extends AppCompatActivity {
                     students.add(s);
                     //Log.v("students", String.valueOf(students.size()));
                 }
-                //fill the validStudents Array
-                validStudents.clear();
-                for(int i =0 ; i< students.size();i++) {
-                    if (students.get(i).getname().startsWith(userInput))
-                    {
-                        validStudents.add(students.get(i));
-                        //again setting teh adapter
-                        mRecyclerView.setAdapter(adapter);
+
+                //get All Students teams
+                databaseReference = firebaseDatabase.getReference("student");
+                databaseReference.addValueEventListener(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+
+                        int index = 0;
+                        for (DataSnapshot uniqueKeySnapshot : snapshot.getChildren()) {
+                            ArrayList<String> teams = new ArrayList<>();
+                            for (DataSnapshot teamSnapshot : uniqueKeySnapshot.child("team").getChildren()) {
+                                String team = (String) teamSnapshot.getValue();
+                                teams.add(team);
+                                Log.v("TAG", team);
+                                mRecyclerView.setAdapter(adapter);
+                            }
+                            students.get(index).setteam(teams);
+                            index++;
+                        }
+
+                        //fill the validStudents Array
+                        validStudents.clear();
+                        Log.v("SIZE", String.valueOf(validStudents.size()));
+                        for(int i =0 ; i< students.size();i++) {
+                            if (students.get(i).getname().toLowerCase().startsWith(userInput.toLowerCase()))
+                            {
+                                Log.v("True?", String.valueOf(students.get(i).getteams().contains(Coordsport)));
+                                if(String.valueOf(students.get(i).getteams().contains(Coordsport)).equals("false"))
+                                {
+
+                                    validStudents.add(students.get(i));
+                                    //again setting teh adapter
+                                    mRecyclerView.setAdapter(adapter);
+                                }
+                            }
+                        }
+                        Log.v("SIZE", String.valueOf(validStudents.size()));
                     }
-                }
+
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.v("The read failed: ", databaseError.getMessage());
+                    }
+
+
+                });
+
+
             }
 
             @Override
@@ -116,55 +178,7 @@ public class AddTeamMemberActivity extends AppCompatActivity {
             }
         });
 
-        //get All Students teams
-        databaseReference = firebaseDatabase.getReference("student");
-        databaseReference.addValueEventListener(new ValueEventListener() {
 
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-
-                int index = 0;
-                for (DataSnapshot uniqueKeySnapshot : snapshot.getChildren()) {
-                    ArrayList<String> teams = new ArrayList<>();
-                    for (DataSnapshot teamSnapshot : uniqueKeySnapshot.child("team").getChildren()) {
-                        String team = (String) teamSnapshot.getValue();
-                        teams.add(team);
-                        Log.v("TAG", team);
-                        mRecyclerView.setAdapter(adapter);
-                    }
-                    students.get(index).setteam(teams);
-                    index++;
-                }}
-
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.v("The read failed: ", databaseError.getMessage());
-            }
-
-
-        });
-
-        //get sport.
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseDatabase.getInstance().getReference().child("coordinator").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Coord coord = snapshot.getValue(Coord.class);
-                    if (coord.getCoordemail().equals(mAuth.getCurrentUser().getEmail())) {
-                        mCoord = coord;
-                    }
-                }
-                Coordsport = mCoord.getCoordSport();
-                Log.v("sport",Coordsport);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
     }
 
