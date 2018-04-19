@@ -8,22 +8,26 @@
             android:id="@+id/nav_camera2"
             android:icon="@drawable/home"
             android:textAllCaps = "true"
-            android:title="HOME2" />
-        <item
-            android:id="@+id/nav_gallery2"
-            android:icon="@drawable/team_details_logo_white"
-            android:textAllCaps = "true"
-            android:title="MY TEAM2" />
-        <item
-            android:id="@+id/nav_slideshow2"
-            android:icon="@drawable/alarm_final"
-            android:textAllCaps = "true"
-            android:title="REMINDERS2" />
+            android:title="HOME" />
+
+
         <item
             android:id="@+id/nav_manage2"
             android:icon="@drawable/profile"
             android:textAllCaps = "true"
-            android:title="PROFILE2" />
+            android:title="Attendance" />
+
+        <item
+            android:id="@+id/sss"
+            android:icon="@drawable/suggestion_white_logo"
+            android:textAllCaps = "true"
+            android:title="Suggestions" />
+
+        <item
+            android:id="@+id/nav_gallery2"
+            android:icon="@drawable/team_details_logo_white"
+            android:textAllCaps = "true"
+            android:title="Team Detail" />
     </group>
 
     <item android:title="">

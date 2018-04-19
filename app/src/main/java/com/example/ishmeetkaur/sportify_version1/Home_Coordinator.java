@@ -89,13 +89,10 @@ public class Home_Coordinator extends AppCompatActivity implements NavigationVie
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings3) {
-            return true;
-        }
-        else if(id == R.id.action_settings4)
+
+       if(id == R.id.action_logout2)
         {
-            //logOut();
+            logOut();
         }
 
         return super.onOptionsItemSelected(item);
@@ -108,15 +105,33 @@ public class Home_Coordinator extends AppCompatActivity implements NavigationVie
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera2) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery2) {
+        if (id == R.id.nav_camera2)
+        {
+            //home
+            Intent i = new Intent(getApplicationContext(),Home_Coordinator.class);
+            startActivity(i);
+        } else if (id == R.id.nav_gallery2)
+        {
+            //my team detail
+            Intent i = new Intent(getApplicationContext(),TeamDetailsActivity.class);
+            startActivity(i);
 
-        } else if (id == R.id.nav_slideshow2) {
+        } else if (id == R.id.nav_manage2)
+        {
+            //attendance
+            Intent i = new Intent(getApplicationContext(),Attendance.class);
+            startActivity(i);
 
-        } else if (id == R.id.nav_manage2) {
+        }
+        else if (id == R.id.sss)
+        {
+            //suggestions
+            Intent i = new Intent(getApplicationContext(),Suggestion_Coordinator.class);
+            startActivity(i);
+        }
 
-        } else if (id == R.id.nav_logout2) {
+        else if (id == R.id.nav_logout2)
+        {
             logOut();
         }
 

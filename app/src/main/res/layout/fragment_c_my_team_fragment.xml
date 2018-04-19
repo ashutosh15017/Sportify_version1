@@ -1,43 +1,127 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ishmeetkaur.sportify_version1.C_myTeam_fragment">
+    tools:context="com.example.ishmeetkaur.sportify_version1.C_myTeam_fragment"
+
+    android:background="@color/backgroundDark">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <ImageView
+        android:id="@+id/imageButton2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="65dp"
+        app:srcCompat="@drawable/team_boxes" />
 
-        <Button
-            android:layout_marginTop="50dp"
-            android:id="@+id/buttonTeamDetails"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:textColor="@android:color/black"
-            android:text="team details"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/check_box"/>
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/imageButton2"
+        android:layout_marginEnd="60dp"
+        app:srcCompat="@drawable/team_boxes" />
 
-        <Button
-            android:id="@+id/buttonAttendance"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:textColor="@android:color/black"
-            android:text="attendance"
-            android:layout_marginTop="50dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/check_box"/>
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignStart="@+id/imageButton2"
+        android:layout_below="@+id/imageButton2"
+        android:layout_marginTop="80dp"
+        app:srcCompat="@drawable/team_boxes" />
 
-        <Button
-            android:id="@+id/buttonSuggestions"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:textColor="@android:color/black"
-            android:text="suggestions"
-            android:layout_marginTop="50dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/check_box"/>
-    </LinearLayout>
-</FrameLayout>
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignStart="@+id/imageView3"
+        android:layout_alignTop="@+id/imageView4"
+        app:srcCompat="@drawable/team_boxes" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/imageButton2"
+        android:layout_below="@+id/imageButton2"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="13dp"
+        android:text="Attendence"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/imageView3"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_marginEnd="10dp"
+        android:text="Team details"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView5"
+        android:layout_below="@+id/imageView4"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:text="Logout"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView6"
+        android:layout_alignTop="@+id/textView7"
+        android:text="Suggestions"
+        android:layout_marginLeft="5dp"
+        android:textColor="@android:color/white"/>
+
+    <ImageView
+        android:id="@+id/attnIntent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/imageView8"
+        android:layout_alignTop="@+id/imageButton2"
+        android:layout_marginTop="24dp"
+        app:srcCompat="@drawable/attendence_logo" />
+
+    <ImageView
+        android:id="@+id/sugg_intent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignEnd="@+id/textView6"
+        android:layout_alignTop="@+id/attnIntent"
+        android:layout_marginEnd="12dp"
+        app:srcCompat="@drawable/team_details_logo" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/textView7"
+        android:layout_alignTop="@+id/imageView4"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="5dp"
+        app:srcCompat="@drawable/logout22" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignStart="@+id/sugg_intent"
+        android:layout_alignTop="@+id/imageView8"
+        app:srcCompat="@drawable/suggestion_logo" />
+
+
+</RelativeLayout>
