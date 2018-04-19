@@ -44,7 +44,6 @@ public class SportDetailsActivity extends AppCompatActivity {
     ArrayList<Student> students;
     private FirebaseAuth mAuth;
     private Coord mCoord;
-    private String Coordsport;
     Handler mHandler;
     private final Runnable m_Runnable = new Runnable()
     {
@@ -113,9 +112,9 @@ public class SportDetailsActivity extends AppCompatActivity {
 
 
 
-        String newString= getIntent().getStringExtra("SPORT");
-        //Log.v("sport",newString);
-        newString="volleyball";
+        String newString= "";
+        newString=getIntent().getStringExtra("SPORT").toString();
+        Log.v("sport",newString);
         TextView sportname = (TextView) findViewById(R.id.sportname);
         sportname.setText(newString);
         getFirebaseData(newString);
@@ -166,7 +165,9 @@ public class SportDetailsActivity extends AppCompatActivity {
 
 
 
-    void getFirebaseData(String newString) {
+    void getFirebaseData(final String newString) {
+
+
 
         //find coord stuff.
         final ArrayList<Coord> Coordinators = new ArrayList<>();
@@ -214,7 +215,7 @@ public class SportDetailsActivity extends AppCompatActivity {
                 for(int i=0;i<Coordinators.size();i++)
                 {
                     Log.v("here", Coordinators.get(i).getCoordname());
-                    if(Coordinators.get(i).getCoordSport().equals(Coordsport))
+                    if(Coordinators.get(i).getCoordSport().equals(newString))
                     {
                         Log.v("here", Coordinators.get(i).getCoordname());
                         cordemail.setText(Coordinators.get(i).getCoordemail());
@@ -234,10 +235,6 @@ public class SportDetailsActivity extends AppCompatActivity {
         });
 
 
-       // Coordsport= newString;
-        Coordsport=newString;
-
-        Log.v("sport", Coordsport);
 
         //get all students info
         databaseReference = firebaseDatabase.getReference("student");
@@ -292,7 +289,7 @@ public class SportDetailsActivity extends AppCompatActivity {
 
                 //fill the teamStudents Array
                 for(int i =0 ; i< students.size();i++) {
-                    if (students.get(i).getteams().contains(Coordsport))
+                    if (students.get(i).getteams().contains(newString))
                     {
                         teamStudents.add(students.get(i));
                         //again setting teh adapter

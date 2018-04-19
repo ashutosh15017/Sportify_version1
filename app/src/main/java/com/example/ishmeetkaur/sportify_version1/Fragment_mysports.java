@@ -191,10 +191,11 @@ public class Fragment_mysports extends Fragment {
 
             @Override
             public void onClick(View view) {
-                Intent i = new Intent (getActivity(),SportDetailsActivity.class);
+                Intent i = new Intent (getContext(),SportDetailsActivity.class);
+                i.putExtra("SPORT",""+sportslist.get(getAdapterPosition()).toString());
                 startActivity(i);
-                i.putExtra("SPORT", sportslist.get(getAdapterPosition()).toString());
                 Log.v("Passed", sportslist.get(getAdapterPosition()));
+//                Log.v("Passed",sportName.getText());
 
             }
         }

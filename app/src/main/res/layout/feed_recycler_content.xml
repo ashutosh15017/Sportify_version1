@@ -34,7 +34,8 @@
                 android:text="Post text"
                 android:maxLines="3"
                 android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:fontFamily="sans-serif"/>
 
             <Button
                 android:id="@+id/oneclick"
@@ -47,6 +48,8 @@
                 android:layout_alignParentEnd="true"
                 android:textStyle="bold"
                 android:padding="10dp"
+                android:fontFamily="sans-serif-smallcaps"
+
                 />
 
         </RelativeLayout>
